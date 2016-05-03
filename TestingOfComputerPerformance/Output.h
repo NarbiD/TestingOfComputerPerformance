@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <string.h>
+
 
 struct dataType 
 {
@@ -9,12 +11,12 @@ struct dataType
 	double Div;
 	double MaxValue;
 };
+struct column {
+	const int first = 5;		//sign of operation
+	const int second = 8;		//type name
+	const int third = 13;		//operation per second
+	const int fourth = 48;		//diagram
+	const int fifth = 5;		//percentage
+};
 
-void SelectMaxValue(dataType& type)
-{
-	type.MaxValue = type.Div;
-	if (type.MaxValue < type.Plus) type.MaxValue = type.Plus;
-	if (type.MaxValue < type.Minus) type.MaxValue = type.Minus;
-	if (type.MaxValue < type.Mult) type.MaxValue = type.Mult;
-	
-}
+void SelectMaxValue(dataType& type);
