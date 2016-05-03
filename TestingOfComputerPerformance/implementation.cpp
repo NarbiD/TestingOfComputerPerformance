@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include "Output.h"
 
 using namespace std;
 
@@ -42,6 +43,7 @@ void testLong()
 
 void testChar()
 {
+	dataType Char;
 	const char M_CH = SCHAR_MAX - 2;
 	char a1 = (rand() % M_CH) + 2, a2 = (rand() % M_CH) + 2, a3 = (rand() % M_CH) + 2, a4 = (rand() % M_CH) + 2, a5 = (rand() % M_CH) + 2;
 	char b1 = (rand() % M_CH) + 2, b2 = (rand() % M_CH) + 2, b3 = (rand() % M_CH) + 2, b4 = (rand() % M_CH) + 2, b5 = (rand() % M_CH) + 2;
@@ -98,7 +100,7 @@ void testChar()
 
 #pragma region CHAR+
 
-	double StartCharPlus = clock();
+	const double StartCharPlus = clock();
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = b2 + c2;	a2 = b2 + d2;	a3 = a4 + c3;	a4 = f4 + d5;	a5 = b5 + g3;
@@ -110,12 +112,12 @@ void testChar()
 		g1 = b1 + e2;	g2 = h2 + e3;	g3 = h3 + e4;	g4 = c2 + e5;	g5 = h5 + e5;
 		h1 = a1 + b1;	h2 = e2 + f5;	h3 = f3 + f2;	h4 = a4 + a1;	h5 = e5 + h5;
 	}
-	const double CharPlus = clock() - StartCharPlus;
+	Char.Plus = clock() - StartCharPlus;
 #pragma endregion
 
 #pragma region CHAR-
 
-	double StartCharMinus = clock();
+	const double StartCharMinus = clock();
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = b2 - c2;	a2 = b2 - d2;	a3 = a4 - c3;	a4 = f4 - d5;	a5 = b5 - g3;
@@ -127,12 +129,12 @@ void testChar()
 		g1 = b1 - e2;	g2 = h2 - e3;	g3 = h3 - e4;	g4 = c2 - e5;	g5 = h5 - e5;
 		h1 = a1 - b1;	h2 = e2 - f5;	h3 = f3 - f2;	h4 = a4 - a1;	h5 = e5 - h5;
 	}
-	const double CharMinus = clock() - StartCharMinus;
+	Char.Minus = clock() - StartCharMinus;
 #pragma endregion
 
 #pragma region CHAR*
 
-	double StartCharMult = clock();
+	const double StartCharMult = clock();
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		temp = b2*c2; a1 = (temp == 0 ? 5 : temp); 	temp = b2*d2; a2 = (temp == 0 ? 7 : temp); temp = a4*c3; a3 = (temp == 0 ? 11 : temp);
@@ -152,12 +154,12 @@ void testChar()
 		temp = a1*b2; h1 = (temp == 0 ? 27 : temp);	temp = e2*f5; h2 = (temp == 0 ? 29 : temp);	temp = f3*f2; h3 = (temp == 0 ? 31 : temp);
 		temp = a4*a1; h4 = (temp == 0 ? 41 : temp);	temp = e5*h5; h5 = (temp == 0 ? 43 : temp);
 	}
-	const double CharMult = clock() - StartCharMult;
+	Char.Mult = clock() - StartCharMult;
 #pragma endregion
 
 #pragma region CHAR/
 
-	double StartCharDiv = clock();
+	const double StartCharDiv = clock();
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = a2 / (c2 == 0 ? 5 : c2);   a2 = b2 / (d2 == 0 ? 7 : d2);	a3 = a4 / (c3 == 0 ? 11 : c3);
@@ -177,7 +179,7 @@ void testChar()
 		h1 = a1 / (b1 == 0 ? 27 : b1);	h2 = e2 / (f5 == 0 ? 29 : f5);	h3 = f3 / (f2 == 0 ? 31 : f2);
 		h4 = a4 / (a1 == 0 ? 41 : a1);	h5 = e5 / (h5 == 0 ? 43 : h5);
 	}
-	const double CharDiv = clock() - StartCharDiv;
+	Char.Div = clock() - StartCharDiv;
 #pragma endregion
 
 	return;
