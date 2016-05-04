@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//print rezults for all operation
 void ShowAll(dataType &type)
 {
 	SelectMaxValue(type);
@@ -13,6 +14,7 @@ void ShowAll(dataType &type)
 	Show("/", "int", type.Div, type.MaxValue);
 }
 
+//select max value among time of all operation
 void SelectMaxValue(dataType& type)
 {
 	type.MaxValue = type.Div;
@@ -21,6 +23,7 @@ void SelectMaxValue(dataType& type)
 	if (type.MaxValue < type.Mult) type.MaxValue = type.Mult;
 }
 
+//print result for one operation
 void Show(string sign, string type, double opPerSec, double maxValue)
 {
 	column show;			//width of columns
