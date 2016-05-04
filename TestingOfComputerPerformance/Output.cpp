@@ -4,6 +4,15 @@
 
 using namespace std;
 
+void ShowAll(dataType &type)
+{
+	SelectMaxValue(type);
+	Show("+", "int", type.Plus, type.MaxValue);
+	Show("-", "int", type.Minus, type.MaxValue);
+	Show("*", "int", type.Mult, type.MaxValue);
+	Show("/", "int", type.Div, type.MaxValue);
+}
+
 void SelectMaxValue(dataType& type)
 {
 	type.MaxValue = type.Div;
@@ -58,3 +67,4 @@ void Show(string sign, string type, double opPerSec, double maxValue)
 
 	cout << str;
 }
+

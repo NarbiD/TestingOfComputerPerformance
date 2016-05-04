@@ -23,3 +23,4 @@ struct column
 
 void SelectMaxValue(dataType& type);
 void Show(string sign, string type, double opPerSec, double maxValue);
+void ShowAll(dataType &type);
