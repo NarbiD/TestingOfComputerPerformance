@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ctime>
-#include "implementation.h"
-#include "Output.h"
+#include "tests.h"
+#include "view.h"
 
 using namespace std;
 

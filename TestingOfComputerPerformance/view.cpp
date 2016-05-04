@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sstream>
-#include "Output.h"
+#include "view.h"
 
 using namespace std;
 

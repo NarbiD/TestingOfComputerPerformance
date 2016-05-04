@@ -1,13 +1,13 @@
 #include <iostream>
 #include <ctime>
-#include "implementation.h"
-#include "Output.h"
+#include "tests.h"
+#include "view.h"
 
 using namespace std;
 
 #define ITER_LOOP 1000000
 
-#pragma region TEMPLATES_INT_CHAR
+#pragma region TEMPLATES_INTEGRAL
 
 template <typename T>
 double SimpleEmptyLoop(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5, 
@@ -104,6 +104,7 @@ double TestPlusIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T 
 	return clock() - StartCharPlus;
 }
 
+//test -
 template<typename T>
 double TestMinusIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
@@ -124,6 +125,7 @@ double TestMinusIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T
 	return clock() - StartCharMinus;
 }
 
+//test *
 template<typename T>
 double TestMultIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
@@ -153,6 +155,7 @@ double TestMultIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T 
 	return clock() - StartCharMult;
 }
 
+//test /
 template<typename T>
 double TestDivIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
