@@ -7,6 +7,8 @@ using namespace std;
 
 #define ITER_LOOP 1000000
 
+#pragma region TEMPLATES_INT_CHAR
+
 template <typename T>
 double SimpleEmptyLoop(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5, 
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5, 
@@ -80,6 +82,8 @@ double EmptyLoopDiv(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, 
 	return double(clock() - StartTimeDiv);
 }
 
+#pragma endregion
+
 void testInt()
 {
 #pragma region INT_DEFINITION
@@ -94,8 +98,6 @@ void testInt()
 	int g1 = (rand() % M_INT) + 2, g2 = (rand() % M_INT) + 2, g3 = (rand() % M_INT) + 2, g4 = (rand() % M_INT) + 2, g5 = (rand() % M_INT) + 2;
 	int h1 = (rand() % M_INT) + 2, h2 = (rand() % M_INT) + 2, h3 = (rand() % M_INT) + 2, h4 = (rand() % M_INT) + 2, h5 = (rand() % M_INT) + 2;
 
-	const double EmptyIntLoop = SimpleEmptyLoop(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
-		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 #pragma endregion
 
 #pragma region EMPTY_INT_LOOPS
@@ -114,6 +116,33 @@ void testInt()
 
 void testLong()
 {
+#pragma region LONG_DEFINITION
+
+	dataType Long;
+	const char M_LONG = LLONG_MAX - 2;
+	long long a1 = (rand() % M_LONG) + 2, a2 = (rand() % M_LONG) + 2, a3 = (rand() % M_LONG) + 2, a4 = (rand() % M_LONG) + 2, a5 = (rand() % M_LONG) + 2;
+	long long b1 = (rand() % M_LONG) + 2, b2 = (rand() % M_LONG) + 2, b3 = (rand() % M_LONG) + 2, b4 = (rand() % M_LONG) + 2, b5 = (rand() % M_LONG) + 2;
+	long long c1 = (rand() % M_LONG) + 2, c2 = (rand() % M_LONG) + 2, c3 = (rand() % M_LONG) + 2, c4 = (rand() % M_LONG) + 2, c5 = (rand() % M_LONG) + 2;
+	long long d1 = (rand() % M_LONG) + 2, d2 = (rand() % M_LONG) + 2, d3 = (rand() % M_LONG) + 2, d4 = (rand() % M_LONG) + 2, d5 = (rand() % M_LONG) + 2;
+	long long e1 = (rand() % M_LONG) + 2, e2 = (rand() % M_LONG) + 2, e3 = (rand() % M_LONG) + 2, e4 = (rand() % M_LONG) + 2, e5 = (rand() % M_LONG) + 2;
+	long long f1 = (rand() % M_LONG) + 2, f2 = (rand() % M_LONG) + 2, f3 = (rand() % M_LONG) + 2, f4 = (rand() % M_LONG) + 2, f5 = (rand() % M_LONG) + 2;
+	long long g1 = (rand() % M_LONG) + 2, g2 = (rand() % M_LONG) + 2, g3 = (rand() % M_LONG) + 2, g4 = (rand() % M_LONG) + 2, g5 = (rand() % M_LONG) + 2;
+	long long h1 = (rand() % M_LONG) + 2, h2 = (rand() % M_LONG) + 2, h3 = (rand() % M_LONG) + 2, h4 = (rand() % M_LONG) + 2, h5 = (rand() % M_LONG) + 2;
+
+#pragma endregion
+
+#pragma region EMPTY_LONG_LOOPS
+
+	const double EmptyLongLoop = SimpleEmptyLoop(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	const double MultLongLoop = EmptyLoopMult(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	const double DivLongLoop = EmptyLoopDiv(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+#pragma endregion
 
 	return;
 }
@@ -121,6 +150,7 @@ void testLong()
 void testChar()
 {
 #pragma region CHAR_DEFINITION
+
 	dataType Char;
 	const char M_CH = SCHAR_MAX - 2;
 	char a1 = (rand() % M_CH) + 2, a2 = (rand() % M_CH) + 2, a3 = (rand() % M_CH) + 2, a4 = (rand() % M_CH) + 2, a5 = (rand() % M_CH) + 2;
@@ -131,9 +161,11 @@ void testChar()
 	char f1 = (rand() % M_CH) + 2, f2 = (rand() % M_CH) + 2, f3 = (rand() % M_CH) + 2, f4 = (rand() % M_CH) + 2, f5 = (rand() % M_CH) + 2;
 	char g1 = (rand() % M_CH) + 2, g2 = (rand() % M_CH) + 2, g3 = (rand() % M_CH) + 2, g4 = (rand() % M_CH) + 2, g5 = (rand() % M_CH) + 2;
 	char h1 = (rand() % M_CH) + 2, h2 = (rand() % M_CH) + 2, h3 = (rand() % M_CH) + 2, h4 = (rand() % M_CH) + 2, h5 = (rand() % M_CH) + 2;
+
 #pragma endregion
 
 #pragma region EMPTY_CHAR_LOOPS
+
 	const double EmptyCharLoop = SimpleEmptyLoop(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
@@ -142,6 +174,7 @@ void testChar()
 
 	const double DivCharLoop = EmptyLoopDiv(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
 #pragma endregion
 
 #pragma region CHAR+
@@ -159,6 +192,7 @@ void testChar()
 		h1 = a1 + b1;	h2 = e2 + f5;	h3 = f3 + f2;	h4 = a4 + a1;	h5 = e5 + h5;
 	}
 	Char.Plus = clock() - StartCharPlus;
+
 #pragma endregion
 
 #pragma region CHAR-
@@ -176,10 +210,12 @@ void testChar()
 		h1 = a1 - b1;	h2 = e2 - f5;	h3 = f3 - f2;	h4 = a4 - a1;	h5 = e5 - h5;
 	}
 	Char.Minus = clock() - StartCharMinus;
+
 #pragma endregion
 
 #pragma region CHAR*
 
+	char temp;
 	const double StartCharMult = clock();
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
@@ -201,6 +237,7 @@ void testChar()
 		temp = a4*a1; h4 = (temp == 0 ? 41 : temp);	temp = e5*h5; h5 = (temp == 0 ? 43 : temp);
 	}
 	Char.Mult = clock() - StartCharMult;
+
 #pragma endregion
 
 #pragma region CHAR/
@@ -226,6 +263,7 @@ void testChar()
 		h4 = a4 / (a1 == 0 ? 41 : a1);	h5 = e5 / (h5 == 0 ? 43 : h5);
 	}
 	Char.Div = clock() - StartCharDiv;
+
 #pragma endregion
 
 	return;
