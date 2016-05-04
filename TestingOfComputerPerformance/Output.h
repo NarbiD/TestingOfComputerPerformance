@@ -11,7 +11,9 @@ struct dataType
 	double Div;
 	double MaxValue;
 };
-struct column {
+
+struct column 
+{
 	const int first = 5;		//sign of operation
 	const int second = 8;		//type name
 	const int third = 13;		//operation per second
@@ -20,3 +22,4 @@ struct column {
 };
 
 void SelectMaxValue(dataType& type);
+void Show(string sign, string type, double opPerSec, double maxValue);

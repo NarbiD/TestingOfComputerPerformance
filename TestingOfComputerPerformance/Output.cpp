@@ -12,7 +12,7 @@ void SelectMaxValue(dataType& type)
 	if (type.MaxValue < type.Mult) type.MaxValue = type.Mult;
 }
 
-void Show(string sign, string type, double value, double max_value)
+void Show(string sign, string type, double opPerSec, double maxValue)
 {
 	column show;			//width of columns
 	stringstream ost;		// stream of string
@@ -29,13 +29,13 @@ void Show(string sign, string type, double value, double max_value)
 		str += " ";
 
 	//print number operation per second
-	ost << value;
+	ost << opPerSec;
 	str += ost.str();
 	for (int i = 0; i < (show.third - ost.str().length()); ++i)
 		str += " ";
 
 	//print diagram
-	int N = int(((value / max_value)*show.fourth));
+	int N = int(((opPerSec / maxValue)*show.fourth));
 	N = (N < 0 ? 0 : N);
 	N = (N > show.fourth? show.fourth : (N == 0 ? 1 : N));
 	for (int i = 0; i < N; ++i)
@@ -44,7 +44,7 @@ void Show(string sign, string type, double value, double max_value)
 		str += " ";
 
 	//print percent computing
-	double percent = (value / max_value) * 100;
+	double percent = (opPerSec / maxValue) * 100;
 	if (percent < 1 && percent >= 0.01)
 		percent = double(int(percent * 100)) / 100; //like 0.02
 	else
