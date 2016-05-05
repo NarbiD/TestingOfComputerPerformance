@@ -19,13 +19,13 @@ double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5, 
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
-	double StartTime;
-	high_resolution_clock::time_point startTime;
+	double StartEmpty;
+	high_resolution_clock::time_point startEmpty;
 
 	if(status == true)
-		StartTime = getCPUTime();
+		StartEmpty = getCPUTime();
 	else 
-		startTime = high_resolution_clock::now();
+		startEmpty = high_resolution_clock::now();
 
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
@@ -40,11 +40,11 @@ double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	}
 	if (status == true)
 	{
-		return double(getCPUTime() - StartTime);
+		return double(getCPUTime() - StartEmpty);
 	}
 	else
 	{
-		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startTime);
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startEmpty);
 		return result.count();
 	}
 }
@@ -55,18 +55,18 @@ double EmptyLoopMult(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5) 
 {
-	double StartTimeMult;
-	high_resolution_clock::time_point startTimeMult;
+	double StartEmptyMult;
+	high_resolution_clock::time_point startEmptyMult;
 
 	T temp;
 	if (status == true)
-		StartTimeMult = getCPUTime();
+		StartEmptyMult = getCPUTime();
 	else
-		startTimeMult = high_resolution_clock::now();
+		startEmptyMult = high_resolution_clock::now();
 
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
-		temp = b2; a1 = (temp == 0 ? 5 : temp);	 temp = b2; a2 = (temp == 0 ? 7 : temp);  temp = a4; a3 = (temp == 0 ? 11 : temp);
+		temp = b1; a1 = (temp == 0 ? 5 : temp);	 temp = b2; a2 = (temp == 0 ? 7 : temp);  temp = a4; a3 = (temp == 0 ? 11 : temp);
 		temp = f4; a4 = (temp == 0 ? 13 : temp); temp = b5; a5 = (temp == 0 ? 17 : temp);
 		temp = a1; b1 = (temp == 0 ? 19 : temp); temp = c2; b2 = (temp == 0 ? 23 : temp); temp = h3; b3 = (temp == 0 ? 27 : temp);
 		temp = f2; b4 = (temp == 0 ? 29 : temp); temp = b2; b5 = (temp == 0 ? 31 : temp);
@@ -85,11 +85,11 @@ double EmptyLoopMult(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3
 	}
 	if (status == true)
 	{
-		return double(getCPUTime() - StartTimeMult);
+		return double(getCPUTime() - StartEmptyMult);
 	}
 	else
 	{
-		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeMult);
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startEmptyMult);
 		return result.count();
 	}
 }
@@ -100,13 +100,13 @@ double EmptyLoopDiv(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
-	double StartTimeDiv;
-	high_resolution_clock::time_point startTimeDiv;
+	double StartEmptyDiv;
+	high_resolution_clock::time_point startEmptyDiv;
 
 	if (status == true)
-		StartTimeDiv = getCPUTime();
+		StartEmptyDiv = getCPUTime();
 	else
-		startTimeDiv = high_resolution_clock::now();
+		startEmptyDiv = high_resolution_clock::now();
 
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
@@ -121,11 +121,11 @@ double EmptyLoopDiv(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3,
 	}
 	if (status == true)
 	{
-		return double(getCPUTime() - StartTimeDiv);
+		return double(getCPUTime() - StartEmptyDiv);
 	}
 	else
 	{
-		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeDiv);
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startEmptyDiv);
 		return result.count();
 	}
 }
