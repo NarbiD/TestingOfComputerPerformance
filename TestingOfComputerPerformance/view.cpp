@@ -4,6 +4,23 @@
 
 using namespace std;
 
+void StartMenu(bool& status)
+{
+	int temp;
+	cout << "1. getCPUTime()" << endl;
+	cout << "2. chrono" << endl;
+	do
+	{
+		cin >> temp;
+	} while (!(temp == 1 && temp == 2));
+	if (temp == 1)
+		status = true;
+	else
+		status = false;
+	return;
+}
+
+
 //print rezults for all operation
 void ShowAll(dataType &type)
 {

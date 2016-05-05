@@ -23,6 +23,7 @@ struct column
 	const int fifth = 5;		//percentage
 };
 
+void StartMenu(bool& status);
 void SelectMaxValue(dataType& type);	//definition MaxValue
 void Show(string sign, string type, double opPerSec, double maxValue);
 void ShowAll(dataType &type);	//show all operations with this type

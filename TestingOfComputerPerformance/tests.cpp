@@ -2,21 +2,30 @@
 #include <ctime>
 #include "tests.h"
 #include "view.h"
+#include "timer.h"
 
 using namespace std;
+using namespace std::chrono;
 
 #define ITER_LOOP 1000000
 
 #pragma region TEMPLATES_INTEGRAL
 
 template <typename T>
-double SimpleEmptyLoop(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5, 
+double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5, 
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5, 
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
 
 	// universal loop
-	double StartTime = clock();
+	double StartTime;
+	high_resolution_clock::time_point startTime;
+
+	if(status == true)
+		StartTime = getCPUTime();
+	else 
+		high_resolution_clock::time_point startTime = high_resolution_clock::now();
+
 	for (int i = 0; i < ITER_LOOP; i++)
 	{
 			a1 = b2;	a2 = b2;	a3 = a4;	a4 = f4;	a5 = b5;
@@ -28,17 +37,32 @@ double SimpleEmptyLoop(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b
 			g1 = b1;	g2 = h2;	g3 = h3;	g4 = c2;	g5 = h5;
 			h1 = a1;	h2 = e2;	h3 = f3;	h4 = a4;	h5 = e5;
 	}
-	return double(clock() - StartTime);
+	if (status == true)
+	{
+		return double(getCPUTime() - StartTime);
+	}
+	else
+	{
+		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startTime);
+		return rezult.count();
+	}
 }
 
 
 template <typename T>
-double EmptyLoopMult(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+double EmptyLoopMult(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5) 
 {
+	double StartTimeMult;
+	high_resolution_clock::time_point startTimeMult;
+
 	T temp;
-	double StartTimeMult = clock();
+	if (status == true)
+		StartTimeMult = getCPUTime();
+	else
+		startTimeMult = high_resolution_clock::now();
+
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		temp = b2; a1 = (temp == 0 ? 5 : temp);	 temp = b2; a2 = (temp == 0 ? 7 : temp);  temp = a4; a3 = (temp == 0 ? 11 : temp);
@@ -58,16 +82,31 @@ double EmptyLoopMult(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5,
 		temp = a1; h1 = (temp == 0 ? 27 : temp); temp = e2; h2 = (temp == 0 ? 29 : temp); temp = f3; h3 = (temp == 0 ? 31 : temp);
 		temp = a4; h4 = (temp == 0 ? 41 : temp); temp = e5; h5 = (temp == 0 ? 43 : temp);
 	}
-	return double(clock() - StartTimeMult);
+	if (status == true)
+	{
+		return double(getCPUTime() - StartTimeMult);
+	}
+	else
+	{
+		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeMult);
+		return rezult.count();
+	}
 }
 
 
 template <typename T>
-double EmptyLoopDiv(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+double EmptyLoopDiv(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
-	double StartTimeDiv = clock();
+	double StartTimeDiv;
+	high_resolution_clock::time_point startTimeDiv;
+
+	if (status == true)
+		StartTimeDiv = getCPUTime();
+	else
+		startTimeDiv = high_resolution_clock::now();
+
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = (c2 == 0 ? 5 : c2);  a2 = (d2 == 0 ? 7 : d2);  a3 = (c3 == 0 ? 11 : c3); a4 = (d5 == 0 ? 13 : d5); a5 = (g3 == 0 ? 17 : g3);
@@ -79,17 +118,32 @@ double EmptyLoopDiv(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, 
 		g1 = (e2 == 0 ? 11 : e2); g2 = (e3 == 0 ? 13 : e3); g3 = (e4 == 0 ? 17 : e4); g4 = (e5 == 0 ? 19 : e5); g5 = (e5 == 0 ? 23 : e5);
 		h1 = (b1 == 0 ? 27 : b1); h2 = (f5 == 0 ? 29 : f5); h3 = (f2 == 0 ? 31 : f2); h4 = (a1 == 0 ? 41 : a1); h5 = (h5 == 0 ? 43 : h5);
 	}
-	return double(clock() - StartTimeDiv);
+	if (status == true)
+	{
+		return double(getCPUTime() - StartTimeDiv);
+	}
+	else
+	{
+		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeDiv);
+		return rezult.count();
+	}
 }
 
 
 //test +
 template<typename T>
-double TestPlusIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+double TestPlusIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
-	const double StartCharPlus = clock();
+	double StartIntegralPlus;
+	high_resolution_clock::time_point startIntegralPlus;
+
+	if (status == true)
+		StartIntegralPlus = getCPUTime();
+	else
+		startIntegralPlus = high_resolution_clock::now();
+
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = b2 + c2;	a2 = b2 + d2;	a3 = a4 + c3;	a4 = f4 + d5;	a5 = b5 + g3;
@@ -101,16 +155,31 @@ double TestPlusIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T 
 		g1 = b1 + e2;	g2 = h2 + e3;	g3 = h3 + e4;	g4 = c2 + e5;	g5 = h5 + e5;
 		h1 = a1 + b1;	h2 = e2 + f5;	h3 = f3 + f2;	h4 = a4 + a1;	h5 = e5 + h5;
 	}
-	return clock() - StartCharPlus;
+	if (status == true)
+	{
+		return double(getCPUTime() - StartIntegralPlus);
+	}
+	else
+	{
+		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralPlus);
+		return rezult.count();
+	}
 }
 
 //test -
 template<typename T>
-double TestMinusIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+double TestMinusIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
-	const double StartCharMinus = clock();
+	double StartIntegralMinus;
+	high_resolution_clock::time_point startIntegralMinus;
+
+	if (status == true)
+		StartIntegralMinus = getCPUTime();
+	else
+		startIntegralMinus = high_resolution_clock::now();
+
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = b2 - c2;	a2 = b2 - d2;	a3 = a4 - c3;	a4 = f4 - d5;	a5 = b5 - g3;
@@ -122,17 +191,32 @@ double TestMinusIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T
 		g1 = b1 - e2;	g2 = h2 - e3;	g3 = h3 - e4;	g4 = c2 - e5;	g5 = h5 - e5;
 		h1 = a1 - b1;	h2 = e2 - f5;	h3 = f3 - f2;	h4 = a4 - a1;	h5 = e5 - h5;
 	}
-	return clock() - StartCharMinus;
+	if (status == true)
+	{
+		return double(getCPUTime() - StartIntegralMinus);
+	}
+	else
+	{
+		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralMinus);
+		return rezult.count();
+	}
 }
 
 //test *
 template<typename T>
-double TestMultIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+double TestMultIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
+	double StartIntegralMult;
+	high_resolution_clock::time_point startIntegralMult;
+
+	if (status == true)
+		StartIntegralMult = getCPUTime();
+	else
+		startIntegralMult = high_resolution_clock::now();
+
 	T temp;
-	const double StartCharMult = clock();
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		temp = b2*c2; a1 = (temp == 0 ? 5 : temp); 	temp = b2*d2; a2 = (temp == 0 ? 7 : temp); temp = a4*c3; a3 = (temp == 0 ? 11 : temp);
@@ -152,16 +236,30 @@ double TestMultIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T 
 		temp = a1*b2; h1 = (temp == 0 ? 27 : temp);	temp = e2*f5; h2 = (temp == 0 ? 29 : temp);	temp = f3*f2; h3 = (temp == 0 ? 31 : temp);
 		temp = a4*a1; h4 = (temp == 0 ? 41 : temp);	temp = e5*h5; h5 = (temp == 0 ? 43 : temp);
 	}
-	return clock() - StartCharMult;
+	if (status == true)
+	{
+		return double(getCPUTime() - StartIntegralMult);
+	}
+	else
+	{
+		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralMult);
+		return rezult.count();
+	}
 }
-
 //test /
 template<typename T>
-double TestDivIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+double TestDivIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
-	const double StartCharDiv = clock();
+	double StartIntegralDiv;
+	high_resolution_clock::time_point startIntegralDiv;
+
+	if (status == true)
+		StartIntegralDiv = getCPUTime();
+	else
+		startIntegralDiv = high_resolution_clock::now();
+
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = a2 / (c2 == 0 ? 5 : c2);   a2 = b2 / (d2 == 0 ? 7 : d2);	a3 = a4 / (c3 == 0 ? 11 : c3);
@@ -181,17 +279,25 @@ double TestDivIntegral(T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b
 		h1 = a1 / (b1 == 0 ? 27 : b1);	h2 = e2 / (f5 == 0 ? 29 : f5);	h3 = f3 / (f2 == 0 ? 31 : f2);
 		h4 = a4 / (a1 == 0 ? 41 : a1);	h5 = e5 / (h5 == 0 ? 43 : h5);
 	}
-	return clock() - StartCharDiv;
+	if (status == true)
+	{
+		return double(getCPUTime() - StartIntegralDiv);
+	}
+	else
+	{
+		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralDiv);
+		return rezult.count();
+	}
 }
 
 
 #pragma endregion
 
-void testInt()
+void testInt(bool& status)
 {
 #pragma region INT_DEFINITION
 	dataType Int;
-	const char M_INT = INT_MAX - 2;
+	const INT M_INT = INT_MAX - 2;
 	int a1 = (rand() % M_INT) + 2, a2 = (rand() % M_INT) + 2, a3 = (rand() % M_INT) + 2, a4 = (rand() % M_INT) + 2, a5 = (rand() % M_INT) + 2;
 	int b1 = (rand() % M_INT) + 2, b2 = (rand() % M_INT) + 2, b3 = (rand() % M_INT) + 2, b4 = (rand() % M_INT) + 2, b5 = (rand() % M_INT) + 2;
 	int c1 = (rand() % M_INT) + 2, c2 = (rand() % M_INT) + 2, c3 = (rand() % M_INT) + 2, c4 = (rand() % M_INT) + 2, c5 = (rand() % M_INT) + 2;
@@ -204,28 +310,28 @@ void testInt()
 #pragma endregion
 
 #pragma region EMPTY_INT_LOOPS
-	const double EmptyIntLoop = SimpleEmptyLoop(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double EmptyIntLoop = SimpleEmptyLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	const double MultIntLoop = EmptyLoopMult(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double MultIntLoop = EmptyLoopMult(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	const double DivIntLoop = EmptyLoopDiv(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double DivIntLoop = EmptyLoopDiv(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 #pragma endregion
 
 #pragma region INT_BENCHMAKR
 
-	Int.Plus = TestPlusIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Int.Plus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Int.Minus = TestMinusIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Int.Minus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Int.Mult = TestMultIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Int.Mult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Int.Div = TestDivIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Int.Div = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 #pragma endregion
@@ -233,12 +339,12 @@ void testInt()
 	return;
 }
 
-void testLong()
+void testLong(bool& status)
 {
 #pragma region LONG_DEFINITION
 
 	dataType Long;
-	const char M_LONG = LLONG_MAX - 2;
+	const long long M_LONG = LLONG_MAX - 2;
 	long long a1 = (rand() % M_LONG) + 2, a2 = (rand() % M_LONG) + 2, a3 = (rand() % M_LONG) + 2, a4 = (rand() % M_LONG) + 2, a5 = (rand() % M_LONG) + 2;
 	long long b1 = (rand() % M_LONG) + 2, b2 = (rand() % M_LONG) + 2, b3 = (rand() % M_LONG) + 2, b4 = (rand() % M_LONG) + 2, b5 = (rand() % M_LONG) + 2;
 	long long c1 = (rand() % M_LONG) + 2, c2 = (rand() % M_LONG) + 2, c3 = (rand() % M_LONG) + 2, c4 = (rand() % M_LONG) + 2, c5 = (rand() % M_LONG) + 2;
@@ -252,29 +358,29 @@ void testLong()
 
 #pragma region EMPTY_LONG_LOOPS
 
-	const double EmptyLongLoop = SimpleEmptyLoop(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double EmptyLongLoop = SimpleEmptyLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	const double MultLongLoop = EmptyLoopMult(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double MultLongLoop = EmptyLoopMult(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	const double DivLongLoop = EmptyLoopDiv(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double DivLongLoop = EmptyLoopDiv(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 #pragma endregion
 
 #pragma region LONG_BENCHMAKR
 
-	Long.Plus = TestPlusIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.Plus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Long.Minus = TestMinusIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.Minus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Long.Mult = TestMultIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.Mult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Long.Div = TestDivIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.Div = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 #pragma endregion
@@ -282,7 +388,7 @@ void testLong()
 	return;
 }
 
-void testChar()
+void testChar(bool& status)
 {
 #pragma region CHAR_DEFINITION
 
@@ -301,29 +407,29 @@ void testChar()
 
 #pragma region CHAR_EMPTY_LOOPS
 
-	const double EmptyCharLoop = SimpleEmptyLoop(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double EmptyCharLoop = SimpleEmptyLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	const double MultCharLoop = EmptyLoopMult(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double MultCharLoop = EmptyLoopMult(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	const double DivCharLoop = EmptyLoopDiv(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	const double DivCharLoop = EmptyLoopDiv(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 #pragma endregion
 
 #pragma region CHAR_BENCHMAKR
 
-	Char.Plus = TestPlusIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.Plus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Minus = TestMinusIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.Minus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Mult = TestMultIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.Mult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Div = TestDivIntegral(a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.Div = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 #pragma endregion

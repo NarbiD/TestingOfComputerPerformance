@@ -7,7 +7,8 @@ using namespace std;
 
 int main()
 {
-
+	bool status;
+	StartMenu(status);
 
 
 	return 0;
