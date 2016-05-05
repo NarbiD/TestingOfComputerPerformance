@@ -9,7 +9,11 @@ int main()
 {
 	bool status;
 	StartMenu(status);
+
 	testChar(status);
+	testInt(status);
+	testLong(status);
+
 	system("pause");
 	return 0;
 }
