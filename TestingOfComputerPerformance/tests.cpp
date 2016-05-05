@@ -7,6 +7,8 @@
 using namespace std::chrono;
 
 #define ITER_LOOP 1000000
+#define NUMB_OF_VAR 40
+#define CPU_FREQUENCY 260000000
 
 #pragma region TEMPLATES_INTEGRAL
 
@@ -294,6 +296,9 @@ void testInt(bool& status)
 {
 #pragma region INT_DEFINITION
 	dataType Int;
+	double timeTotal;
+	double timeWithoutEmptyLoop;
+
 	const INT M_INT = INT_MAX - 2;
 	int a1 = (rand() % M_INT) + 2, a2 = (rand() % M_INT) + 2, a3 = (rand() % M_INT) + 2, a4 = (rand() % M_INT) + 2, a5 = (rand() % M_INT) + 2;
 	int b1 = (rand() % M_INT) + 2, b2 = (rand() % M_INT) + 2, b3 = (rand() % M_INT) + 2, b4 = (rand() % M_INT) + 2, b5 = (rand() % M_INT) + 2;
@@ -318,19 +323,25 @@ void testInt(bool& status)
 #pragma endregion
 
 #pragma region INT_BENCHMAKR
-
-	Int.Plus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Int.TimeTotalPlus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Int.Minus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
-		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+	Int.Plus = NUMB_OF_VAR * double(ITER_LOOP) / (Int.TimeTotalPlus - EmptyIntLoop);
 
-	Int.Mult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
-		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+	Int.TimeTotalMinus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+			d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Int.Div = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
-		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+	Int.Minus = NUMB_OF_VAR * double(ITER_LOOP) / (Int.TimeTotalMinus - EmptyIntLoop);
 
+	Int.TimeTotalMult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+	
+	Int.Mult = NUMB_OF_VAR * double(ITER_LOOP) / (Int.TimeTotalMult - EmptyIntLoop);
+
+	Int.TimeTotalDiv = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+	
+	Int.Div = NUMB_OF_VAR * double(ITER_LOOP) / (Int.TimeTotalDiv - EmptyIntLoop);
 #pragma endregion
 
 	return;
