@@ -13,11 +13,11 @@ struct dataType
 
 struct column 
 {
-	const int first = 5;						//sign of operation
+	const int first = 3;						//sign of operation
 	const int second = 8;						//type name
 	const int third = 13;						//number operation per second
 	const int fourth = 48;						//diagram
-	const int fifth = 5;						//percentage
+	const int fifth = 4;						//percentage
 };
 
 void StartMenu(bool& status);

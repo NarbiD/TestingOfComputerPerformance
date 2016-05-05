@@ -296,9 +296,6 @@ void testInt(bool& status)
 {
 #pragma region INT_DEFINITION
 	dataType Int;
-	double timeTotal;
-	double timeWithoutEmptyLoop;
-
 	const INT M_INT = INT_MAX - 2;
 	int a1 = (rand() % M_INT) + 2, a2 = (rand() % M_INT) + 2, a3 = (rand() % M_INT) + 2, a4 = (rand() % M_INT) + 2, a5 = (rand() % M_INT) + 2;
 	int b1 = (rand() % M_INT) + 2, b2 = (rand() % M_INT) + 2, b3 = (rand() % M_INT) + 2, b4 = (rand() % M_INT) + 2, b5 = (rand() % M_INT) + 2;
@@ -460,6 +457,7 @@ void testChar(bool& status)
 
 #pragma endregion
 
+	ShowAll(Char);
 	return;
 }
 

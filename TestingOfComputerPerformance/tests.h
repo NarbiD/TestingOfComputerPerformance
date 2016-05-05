@@ -43,8 +43,8 @@ double TestDivIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5);
 
 
-void testChar();
-void testInt();
-void testLong();
+void testChar(bool& status);
+void testInt(bool& status);
+void testLong(bool& status);
 void testFloat();
 void testDouble();
