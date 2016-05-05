@@ -26,7 +26,7 @@ double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	else 
 		startTime = high_resolution_clock::now();
 
-	for (int i = 0; i < ITER_LOOP; i++)
+	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 			a1 = b2;	a2 = b2;	a3 = a4;	a4 = f4;	a5 = b5;
 			b1 = a1;	b2 = c2;	b3 = h3;	b4 = f2;	b5 = b2;
@@ -442,22 +442,22 @@ void testChar(bool& status)
 	Char.TimeTotalPlus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Plus = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalPlus - EmptyCharLoop);
+	Char.Plus = NUMB_OF_VAR * ITER_LOOP / (Char.TimeTotalPlus - EmptyCharLoop);
 
 	Char.TimeTotalMinus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Minus = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalMinus - EmptyCharLoop);
+	Char.Minus = NUMB_OF_VAR * ITER_LOOP / (Char.TimeTotalMinus - EmptyCharLoop);
 
 	Char.TimeTotalMult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Mult = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalMult - EmptyCharLoop);
+	Char.Mult = NUMB_OF_VAR * ITER_LOOP / (Char.TimeTotalMult - MultCharLoop);
 
 	Char.TimeTotalDiv = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Div = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalDiv - EmptyCharLoop);
+	Char.Div = NUMB_OF_VAR * ITER_LOOP / (Char.TimeTotalDiv - DivCharLoop);
 
 #pragma endregion
 
