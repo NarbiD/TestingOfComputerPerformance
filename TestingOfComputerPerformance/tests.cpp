@@ -4,7 +4,6 @@
 #include "view.h"
 #include "timer.h"
 
-using namespace std;
 using namespace std::chrono;
 
 #define ITER_LOOP 1000000
@@ -16,8 +15,6 @@ double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5, 
 	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
 {
-
-	// universal loop
 	double StartTime;
 	high_resolution_clock::time_point startTime;
 
@@ -43,8 +40,8 @@ double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	}
 	else
 	{
-		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startTime);
-		return rezult.count();
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startTime);
+		return result.count();
 	}
 }
 
@@ -88,8 +85,8 @@ double EmptyLoopMult(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3
 	}
 	else
 	{
-		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeMult);
-		return rezult.count();
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeMult);
+		return result.count();
 	}
 }
 
@@ -124,8 +121,8 @@ double EmptyLoopDiv(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3,
 	}
 	else
 	{
-		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeDiv);
-		return rezult.count();
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startTimeDiv);
+		return result.count();
 	}
 }
 
@@ -161,8 +158,8 @@ double TestPlusIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T
 	}
 	else
 	{
-		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralPlus);
-		return rezult.count();
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralPlus);
+		return result.count();
 	}
 }
 
@@ -197,8 +194,8 @@ double TestMinusIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, 
 	}
 	else
 	{
-		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralMinus);
-		return rezult.count();
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralMinus);
+		return result.count();
 	}
 }
 
@@ -242,8 +239,8 @@ double TestMultIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T
 	}
 	else
 	{
-		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralMult);
-		return rezult.count();
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralMult);
+		return result.count();
 	}
 }
 //test /
@@ -285,8 +282,8 @@ double TestDivIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	}
 	else
 	{
-		duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralDiv);
-		return rezult.count();
+		duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - startIntegralDiv);
+		return result.count();
 	}
 }
 
