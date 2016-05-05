@@ -9,7 +9,7 @@ int main()
 {
 	bool status;
 	StartMenu(status);
-
+	testChar();
 
 	return 0;
 }

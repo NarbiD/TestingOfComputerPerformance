@@ -323,6 +323,7 @@ void testInt(bool& status)
 #pragma endregion
 
 #pragma region INT_BENCHMAKR
+
 	Int.TimeTotalPlus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
@@ -342,6 +343,7 @@ void testInt(bool& status)
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 	
 	Int.Div = NUMB_OF_VAR * double(ITER_LOOP) / (Int.TimeTotalDiv - EmptyIntLoop);
+
 #pragma endregion
 
 	return;
@@ -379,17 +381,25 @@ void testLong(bool& status)
 
 #pragma region LONG_BENCHMAKR
 
-	Long.Plus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.TimeTotalPlus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Long.Minus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.Plus = NUMB_OF_VAR * double(ITER_LOOP) / (Long.TimeTotalPlus - EmptyLongLoop);
+
+	Long.TimeTotalMinus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Long.Mult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.Minus = NUMB_OF_VAR * double(ITER_LOOP) / (Long.TimeTotalMinus - EmptyLongLoop);
+
+	Long.TimeTotalMult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Long.Div = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Long.Mult = NUMB_OF_VAR * double(ITER_LOOP) / (Long.TimeTotalMult - EmptyLongLoop);
+
+	Long.TimeTotalDiv = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Long.Div = NUMB_OF_VAR * double(ITER_LOOP) / (Long.TimeTotalDiv - EmptyLongLoop);
 
 #pragma endregion
 
@@ -428,17 +438,25 @@ void testChar(bool& status)
 
 #pragma region CHAR_BENCHMAKR
 
-	Char.Plus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.TimeTotalPlus = TestPlusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Minus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.Plus = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalPlus - EmptyCharLoop);
+
+	Char.TimeTotalMinus = TestMinusIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Mult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.Minus = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalMinus - EmptyCharLoop);
+
+	Char.TimeTotalMult = TestMultIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
-	Char.Div = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Char.Mult = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalMult - EmptyCharLoop);
+
+	Char.TimeTotalDiv = TestDivIntegral(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Char.Div = NUMB_OF_VAR * double(ITER_LOOP) / (Char.TimeTotalDiv - EmptyCharLoop);
 
 #pragma endregion
 
