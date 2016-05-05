@@ -9,7 +9,8 @@ using namespace std::chrono;
 
 #define ITER_LOOP 1000000
 #define NUMB_OF_VAR 40
-#define CPU_FREQUENCY 260000000
+//#define CPU_FREQUENCY 260000000
+
 
 #pragma region TEMPLATES_INTEGRAL
 
@@ -299,6 +300,7 @@ void testInt(bool& status)
 	dataType Int;
 	Int.Name = "int";
 	const INT M_INT = INT_MAX - 2;
+	srand(unsigned int(time(NULL)));
 	int a1 = (rand() % M_INT) + 2, a2 = (rand() % M_INT) + 2, a3 = (rand() % M_INT) + 2, a4 = (rand() % M_INT) + 2, a5 = (rand() % M_INT) + 2;
 	int b1 = (rand() % M_INT) + 2, b2 = (rand() % M_INT) + 2, b3 = (rand() % M_INT) + 2, b4 = (rand() % M_INT) + 2, b5 = (rand() % M_INT) + 2;
 	int c1 = (rand() % M_INT) + 2, c2 = (rand() % M_INT) + 2, c3 = (rand() % M_INT) + 2, c4 = (rand() % M_INT) + 2, c5 = (rand() % M_INT) + 2;
@@ -355,6 +357,7 @@ void testLong(bool& status)
 	dataType Long;
 	Long.Name = "long";
 	const long long M_LONG = LLONG_MAX - 2;
+	srand(unsigned int(time(NULL)));
 	long long a1 = (rand() % M_LONG) + 2, a2 = (rand() % M_LONG) + 2, a3 = (rand() % M_LONG) + 2, a4 = (rand() % M_LONG) + 2, a5 = (rand() % M_LONG) + 2;
 	long long b1 = (rand() % M_LONG) + 2, b2 = (rand() % M_LONG) + 2, b3 = (rand() % M_LONG) + 2, b4 = (rand() % M_LONG) + 2, b5 = (rand() % M_LONG) + 2;
 	long long c1 = (rand() % M_LONG) + 2, c2 = (rand() % M_LONG) + 2, c3 = (rand() % M_LONG) + 2, c4 = (rand() % M_LONG) + 2, c5 = (rand() % M_LONG) + 2;
@@ -413,6 +416,7 @@ void testChar(bool& status)
 	dataType Char;
 	Char.Name = "char";
 	const char M_CH = SCHAR_MAX - 2;
+	srand(unsigned int(time(NULL)));
 	char a1 = (rand() % M_CH) + 2, a2 = (rand() % M_CH) + 2, a3 = (rand() % M_CH) + 2, a4 = (rand() % M_CH) + 2, a5 = (rand() % M_CH) + 2;
 	char b1 = (rand() % M_CH) + 2, b2 = (rand() % M_CH) + 2, b3 = (rand() % M_CH) + 2, b4 = (rand() % M_CH) + 2, b5 = (rand() % M_CH) + 2;
 	char c1 = (rand() % M_CH) + 2, c2 = (rand() % M_CH) + 2, c3 = (rand() % M_CH) + 2, c4 = (rand() % M_CH) + 2, c5 = (rand() % M_CH) + 2;
