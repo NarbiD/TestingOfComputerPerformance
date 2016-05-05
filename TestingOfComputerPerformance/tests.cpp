@@ -3,6 +3,7 @@
 #include "tests.h"
 #include "view.h"
 #include "timer.h"
+#include <math.h>
 
 using namespace std::chrono;
 
@@ -23,7 +24,7 @@ double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 	if(status == true)
 		StartTime = getCPUTime();
 	else 
-		high_resolution_clock::time_point startTime = high_resolution_clock::now();
+		startTime = high_resolution_clock::now();
 
 	for (int i = 0; i < ITER_LOOP; i++)
 	{
@@ -296,6 +297,7 @@ void testInt(bool& status)
 {
 #pragma region INT_DEFINITION
 	dataType Int;
+	Int.Name = "int";
 	const INT M_INT = INT_MAX - 2;
 	int a1 = (rand() % M_INT) + 2, a2 = (rand() % M_INT) + 2, a3 = (rand() % M_INT) + 2, a4 = (rand() % M_INT) + 2, a5 = (rand() % M_INT) + 2;
 	int b1 = (rand() % M_INT) + 2, b2 = (rand() % M_INT) + 2, b3 = (rand() % M_INT) + 2, b4 = (rand() % M_INT) + 2, b5 = (rand() % M_INT) + 2;
@@ -351,6 +353,7 @@ void testLong(bool& status)
 #pragma region LONG_DEFINITION
 
 	dataType Long;
+	Long.Name = "long";
 	const long long M_LONG = LLONG_MAX - 2;
 	long long a1 = (rand() % M_LONG) + 2, a2 = (rand() % M_LONG) + 2, a3 = (rand() % M_LONG) + 2, a4 = (rand() % M_LONG) + 2, a5 = (rand() % M_LONG) + 2;
 	long long b1 = (rand() % M_LONG) + 2, b2 = (rand() % M_LONG) + 2, b3 = (rand() % M_LONG) + 2, b4 = (rand() % M_LONG) + 2, b5 = (rand() % M_LONG) + 2;
@@ -408,6 +411,7 @@ void testChar(bool& status)
 #pragma region CHAR_DEFINITION
 
 	dataType Char;
+	Char.Name = "char";
 	const char M_CH = SCHAR_MAX - 2;
 	char a1 = (rand() % M_CH) + 2, a2 = (rand() % M_CH) + 2, a3 = (rand() % M_CH) + 2, a4 = (rand() % M_CH) + 2, a5 = (rand() % M_CH) + 2;
 	char b1 = (rand() % M_CH) + 2, b2 = (rand() % M_CH) + 2, b3 = (rand() % M_CH) + 2, b4 = (rand() % M_CH) + 2, b5 = (rand() % M_CH) + 2;
@@ -457,6 +461,11 @@ void testChar(bool& status)
 
 #pragma endregion
 
+	/*if (Char.Plus <= 0 || Char.Minus <= 0 || Char.Mult <= 0 || Char.Div <= 0 ||
+		isinf(Char.Plus) || isinf(Char.Minus) || isinf(Char.Mult) || isinf(Char.Div))
+	{
+		testChar(status);
+	}*/
 	ShowAll(Char);
 	return;
 }

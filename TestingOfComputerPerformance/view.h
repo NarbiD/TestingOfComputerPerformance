@@ -6,6 +6,7 @@ using namespace std;
 
 struct dataType 
 {
+	string Name;
 	double TimeWithoutEmptyLoop;
 	double TimeTotalPlus, TimeTotalMinus, TimeTotalMult, TimeTotalDiv;
 	double Plus, Minus, Mult, Div, MaxValue;	//operations time
@@ -13,7 +14,7 @@ struct dataType
 
 struct column 
 {
-	const int first = 3;						//sign of operation
+	const int first = 2;						//sign of operation
 	const int second = 8;						//type name
 	const int third = 13;						//number operation per second
 	const int fourth = 48;						//diagram
