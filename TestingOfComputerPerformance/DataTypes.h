@@ -9,7 +9,21 @@
 template <typename Type>
 class DataTypes
 {
+private:
+	struct column
+	{
+		const int first = 2;						//sign of operation
+		const int second = 8;						//type name
+		const int third = 13;						//number operation per second
+		const int fourth = 48;						//diagram
+		const int fifth = 4;						//percentage
+	};
+
+	void Show(string sign, double OperationPerSec);
+
 protected:
+
+
 
 	std::string Name;
 
@@ -30,6 +44,11 @@ protected:
 
 public:
 	DataTypes(std::string name);
+
+	void ShowAll();
+
+	
+
 	~DataTypes();
 };
 
