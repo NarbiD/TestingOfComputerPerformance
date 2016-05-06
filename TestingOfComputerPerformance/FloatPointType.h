@@ -1,18 +1,16 @@
 #pragma once
 #include "DataTypes.h"
 
-#define ITER_LOOP 100000
+#define DEVINDER 127
 
 template <typename Type>
-class IntegralType :
+class FloatPointType :
 	public DataTypes<Type>
 {
-
 public:
-	IntegralType<Type>(std::string) : DataTypes<Type>(std::string);
+	FloatPointType<Type>(std::string) : DataTypes<Type>(std::string);
 
 	double EmptyLoop();
-	double EmptyLoopMult();
 	double EmptyLoopDiv();
 
 	double TestPlus();
@@ -20,7 +18,6 @@ public:
 	double TestMult();
 	double TestDiv();
 
-
-	~IntegralType();
+	~FloatPointType();
 };
 

@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataTypes.cpp" />
+    <ClCompile Include="FloatPointType.cpp" />
     <ClCompile Include="IntegralType.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="tests.cpp" />
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="FloatPointType.h" />
     <ClInclude Include="IntegralType.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="timer.h" />
