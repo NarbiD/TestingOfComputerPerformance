@@ -1,9 +1,8 @@
 #pragma once
-
+//#include <iostream>
 #include <string>
 #include <chrono>
 #include <climits>
-
 
 
 template <typename Type>
@@ -25,8 +24,7 @@ private:
 protected:
 	std::string Name;
 
-	double Plus, Minus, Mult, Div, MaxValue;							//time of operations
-	double TimeWithoutEmptyLoop;									
+	double Plus, Minus, Mult, Div, MaxValue;							//time of operations		
 	double TimeTotalPlus, TimeTotalMinus, TimeTotalMult, TimeTotalDiv;	//time with loops
 
 	std::chrono::high_resolution_clock::time_point StartTime, FinishTime;
@@ -41,7 +39,7 @@ protected:
 	Type h1, h2, h3, h4, h5;
 
 public:
-	DataTypes(std::string name);
+	DataTypes();
 	void ShowAll();	
 
 	~DataTypes();

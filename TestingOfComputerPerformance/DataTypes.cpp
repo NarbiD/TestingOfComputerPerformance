@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include "DataTypes.h"
+#include <typeinfo>
 
 using namespace std;
 
@@ -56,9 +57,9 @@ void DataTypes<Type>::Show(string sign, double OperationPerSec)
 }
 
 template<typename Type>
-DataTypes<Type>::DataTypes(std::string name)
+DataTypes<Type>::DataTypes()
 {
-	Name = name;
+	Name = typeid(Type).name();
 
 	a1 = (rand() % SCHAR_MAX) + 2, a2 = (rand() % SCHAR_MAX) + 2, a3 = (rand() % SCHAR_MAX) + 2, a4 = (rand() % SCHAR_MAX) + 2, a5 = (rand() % SCHAR_MAX) + 2;
 	b1 = (rand() % SCHAR_MAX) + 2, b2 = (rand() % SCHAR_MAX) + 2, b3 = (rand() % SCHAR_MAX) + 2, b4 = (rand() % SCHAR_MAX) + 2, b5 = (rand() % SCHAR_MAX) + 2;

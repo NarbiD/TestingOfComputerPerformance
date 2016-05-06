@@ -1,7 +1,9 @@
 #pragma once
+#include <iostream>
 #include "DataTypes.h"
 
 #define ITER_LOOP 100000
+#define NUMB_OF_VAR 40
 
 template <typename Type>
 class IntegralType :
@@ -9,9 +11,7 @@ class IntegralType :
 {
 
 public:
-	IntegralType<Type>(std::string) : DataTypes<Type>(std::string)
-	{
-	}
+	IntegralType();// : DataTypes<Type>()
 
 	double EmptyLoop();
 	double EmptyLoopMult();
@@ -22,6 +22,8 @@ public:
 	double TestMult();
 	double TestDiv();
 
+	void Test();
 
+private:
 	~IntegralType();
 };
