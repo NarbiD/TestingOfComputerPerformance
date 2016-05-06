@@ -1,4 +1,6 @@
 #include <iostream>
+#include <climits>
+#include <cfloat>
 #include <ctime>
 #include "tests.h"
 #include "view.h"
@@ -299,7 +301,7 @@ void testInt(bool& status)
 #pragma region INT_DEFINITION
 	dataType Int;
 	Int.Name = "int";
-	const INT M_INT = INT_MAX - 2;
+	const int M_INT = INT_MAX - 2;
 	srand(unsigned int(time(NULL)));
 	int a1 = (rand() % M_INT) + 2, a2 = (rand() % M_INT) + 2, a3 = (rand() % M_INT) + 2, a4 = (rand() % M_INT) + 2, a5 = (rand() % M_INT) + 2;
 	int b1 = (rand() % M_INT) + 2, b2 = (rand() % M_INT) + 2, b3 = (rand() % M_INT) + 2, b4 = (rand() % M_INT) + 2, b5 = (rand() % M_INT) + 2;
@@ -411,6 +413,10 @@ void testLong(bool& status)
 	return;
 }
 
+void testDouble(bool & status)
+{
+}
+
 void testChar(bool& status)
 {
 #pragma region CHAR_DEFINITION
@@ -476,9 +482,225 @@ void testChar(bool& status)
 	return;
 }
 
-void testFloat()
-{
+#pragma region TEMPLATES_FLOAT
 
+template <typename T>
+double SimpleEmptyLoopFloat(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
+	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
+{
+	high_resolution_clock::time_point StartEmptyFloat = high_resolution_clock::now();
+
+	for (long i = 0; i < ITER_LOOP; ++i)
+	{
+		a1 = fmod(b1, DEVINDER) + 2;	a2 = fmod(b2, DEVINDER) + 3;	a3 = fmod(a4, DEVINDER) + 4;	a4 = fmod(f4, DEVINDER) + 5;	a5 = fmod(b5, DEVINDER) + 6;
+		b1 = fmod(a1, DEVINDER) + 7;	b2 = fmod(c2, DEVINDER) + 8;	b3 = fmod(h3, DEVINDER) + 9;	b4 = fmod(f2, DEVINDER) + 2;	b5 = fmod(b2, DEVINDER) + 3;
+		c1 = fmod(d1, DEVINDER) + 4;	c2 = fmod(h2, DEVINDER) + 5;	c3 = fmod(d4, DEVINDER) + 6;	c4 = fmod(d4, DEVINDER) + 7;	c5 = fmod(f1, DEVINDER) + 8;
+		d1 = fmod(a4, DEVINDER) + 9;	d2 = fmod(g2, DEVINDER) + 2;	d3 = fmod(a1, DEVINDER) + 3;	d4 = fmod(b4, DEVINDER) + 4;	d5 = fmod(c5, DEVINDER) + 5;
+		e1 = fmod(e2, DEVINDER) + 6;	e2 = fmod(f3, DEVINDER) + 7;	e3 = fmod(h1, DEVINDER) + 8;	e4 = fmod(g1, DEVINDER) + 9;	e5 = fmod(b1, DEVINDER) + 2;
+		f1 = fmod(g3, DEVINDER) + 3;	f2 = fmod(g4, DEVINDER) + 4;	f3 = fmod(e3, DEVINDER) + 5;	f4 = fmod(g1, DEVINDER) + 6;	f5 = fmod(b5, DEVINDER) + 7;
+		g1 = fmod(b1, DEVINDER) + 8;	g2 = fmod(h2, DEVINDER) + 9;	g3 = fmod(h3, DEVINDER) + 2;	g4 = fmod(c2, DEVINDER) + 3;	g5 = fmod(h5, DEVINDER) + 4;
+		h1 = fmod(a1, DEVINDER) + 5;	h2 = fmod(e2, DEVINDER) + 6;	h3 = fmod(f3, DEVINDER) + 7;	h4 = fmod(a4, DEVINDER) + 8;	h5 = fmod(e5, DEVINDER) + 9;
+	}
+	
+	duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - StartEmptyFloat);
+	return rezult.count();
+}
+
+template <typename T>
+double FloatEmptyDiv(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
+	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
+{
+	high_resolution_clock::time_point StartEmptyFloat = high_resolution_clock::now();
+
+	for (long i = 0; i < ITER_LOOP; ++i)
+	{
+		a1 = b1 + 2;	a2 = b2 + 3;	a3 = a4 + 4;	a4 = f4 + 5;	a5 = b5 + 6; 
+		b1 = a1 + 7;	b2 = c2 + 8;	b3 = h3 + 9;	b4 = f2 + 2;	b5 = b2 + 3;
+		c1 = d1 + 4;	c2 = h2 + 5;	c3 = d4 + 6;	c4 = d4 + 7;	c5 = f1 + 8;	
+		d1 = a4 + 9;	d2 = g2 + 2;	d3 = a1 + 3;	d4 = b4 + 4;	d5 = c5 + 5;
+		e1 = e2 + 6;	e2 = f3 + 7;	e3 = h1 + 8;	e4 = g1 + 9;	e5 = b1 + 2;
+		f1 = g3 + 3;	f2 = g4 + 4;	f3 = e3 + 5;	f4 = g1 + 6;	f5 = b5 + 7;
+		g1 = b1 + 8;	g2 = h2 + 9;	g3 = h3 + 2;	g4 = c2 + 3;	g5 = h5 + 4;
+		h1 = a1 + 5;	h2 = e2 + 6;	h3 = f3 + 7;	h4 = a4 + 8;	h5 = e5 + 9;
+	}
+	duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - StartEmptyFloat);
+	return rezult.count();
+}
+
+template <typename T>
+double FloatPlusLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
+	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
+{
+	high_resolution_clock::time_point StartFloatPlus = high_resolution_clock::now();
+	for (long i = 0; i < ITER_LOOP; ++i)
+	{
+		a1 = fmod(b1 + c2, DEVINDER) + 2;	a2 = fmod(b2 + d2, DEVINDER) + 3;	a3 = fmod(a4 + c3, DEVINDER) + 4;	a4 = fmod(f4 + d5, DEVINDER) + 5;	a5 = fmod(b5 + g3, DEVINDER) + 6;
+		b1 = fmod(a1 + b3, DEVINDER) + 7;	b2 = fmod(c2 + d5, DEVINDER) + 8;	b3 = fmod(h3 + e3, DEVINDER) + 9;	b4 = fmod(f2 + a4, DEVINDER) + 2;	b5 = fmod(b2 + d5, DEVINDER) + 3;
+		c1 = fmod(d1 + e5, DEVINDER) + 4;	c2 = fmod(h2 + f2, DEVINDER) + 5;	c3 = fmod(d4 + a3, DEVINDER) + 6;	c4 = fmod(d4 + c1, DEVINDER) + 7;	c5 = fmod(f1 + f5, DEVINDER) + 8;
+		d1 = fmod(a4 + a1, DEVINDER) + 9;	d2 = fmod(g2 + f3, DEVINDER) + 2;	d3 = fmod(a1 + b5, DEVINDER) + 3;	d4 = fmod(b4 + h4, DEVINDER) + 4;	d5 = fmod(c5 + b1, DEVINDER) + 5;
+		e1 = fmod(e2 + e3, DEVINDER) + 6;	e2 = fmod(f3 + g2, DEVINDER) + 7;	e3 = fmod(h1 + h3, DEVINDER) + 8;	e4 = fmod(g1 + a4, DEVINDER) + 9;	e5 = fmod(b1 + c5, DEVINDER) + 2;
+		f1 = fmod(g3 + h5, DEVINDER) + 3;	f2 = fmod(g4 + h1, DEVINDER) + 4;	f3 = fmod(e3 + e5, DEVINDER) + 5;	f4 = fmod(g1 + h4, DEVINDER) + 6;	f5 = fmod(b5 + c2, DEVINDER) + 7;
+		g1 = fmod(b1 + e2, DEVINDER) + 8;	g2 = fmod(h2 + e3, DEVINDER) + 9;	g3 = fmod(h3 + e4, DEVINDER) + 2;	g4 = fmod(c2 + e5, DEVINDER) + 3;	g5 = fmod(h5 + e5, DEVINDER) + 4;
+		h1 = fmod(a1 + b1, DEVINDER) + 5;	h2 = fmod(e2 + f5, DEVINDER) + 6;	h3 = fmod(f3 + f2, DEVINDER) + 7;	h4 = fmod(a4 + a1, DEVINDER) + 8;	h5 = fmod(e5 + h5, DEVINDER) + 9;
+	}
+	duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - StartFloatPlus);
+
+	return rezult.count();
+}
+
+template <typename T>
+double FloatMinusLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
+	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
+{
+	high_resolution_clock::time_point StartFloatMinus = high_resolution_clock::now();
+	for (long i = 0; i < ITER_LOOP; ++i)
+	{
+		a1 = fmod(b1 - c2, DEVINDER) + 2;	a2 = fmod(b2 - d2, DEVINDER) + 3;	a3 = fmod(a4 - c3, DEVINDER) + 4;	a4 = fmod(f4 - d5, DEVINDER) + 5;	a5 = fmod(b5 - g3, DEVINDER) + 6;
+		b1 = fmod(a1 - b3, DEVINDER) + 7;	b2 = fmod(c2 - d5, DEVINDER) + 8;	b3 = fmod(h3 - e3, DEVINDER) + 9;	b4 = fmod(f2 - a4, DEVINDER) + 2;	b5 = fmod(b2 - d5, DEVINDER) + 3;
+		c1 = fmod(d1 - e5, DEVINDER) + 4;	c2 = fmod(h2 - f2, DEVINDER) + 5;	c3 = fmod(d4 - a3, DEVINDER) + 6;	c4 = fmod(d4 - c1, DEVINDER) + 7;	c5 = fmod(f1 - f5, DEVINDER) + 8;
+		d1 = fmod(a4 - a1, DEVINDER) + 9;	d2 = fmod(g2 - f3, DEVINDER) + 2;	d3 = fmod(a1 - b5, DEVINDER) + 3;	d4 = fmod(b4 - h4, DEVINDER) + 4;	d5 = fmod(c5 - b1, DEVINDER) + 5;
+		e1 = fmod(e2 - e3, DEVINDER) + 6;	e2 = fmod(f3 - g2, DEVINDER) + 7;	e3 = fmod(h1 - h3, DEVINDER) + 8;	e4 = fmod(g1 - a4, DEVINDER) + 9;	e5 = fmod(b1 - c5, DEVINDER) + 2;
+		f1 = fmod(g3 - h5, DEVINDER) + 3;	f2 = fmod(g4 - h1, DEVINDER) + 4;	f3 = fmod(e3 - e5, DEVINDER) + 5;	f4 = fmod(g1 - h4, DEVINDER) + 6;	f5 = fmod(b5 - c2, DEVINDER) + 7;
+		g1 = fmod(b1 - e2, DEVINDER) + 8;	g2 = fmod(h2 - e3, DEVINDER) + 9;	g3 = fmod(h3 - e4, DEVINDER) + 2;	g4 = fmod(c2 - e5, DEVINDER) + 3;	g5 = fmod(h5 - e5, DEVINDER) + 4;
+		h1 = fmod(a1 - b1, DEVINDER) + 5;	h2 = fmod(e2 - f5, DEVINDER) + 6;	h3 = fmod(f3 - f2, DEVINDER) + 7;	h4 = fmod(a4 - a1, DEVINDER) + 8;	h5 = fmod(e5 - h5, DEVINDER) + 9;
+
+	}
+	duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - StartFloatMinus);
+	return rezult.count();
+}
+
+template <typename T>
+double FloatMultLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
+	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
+{
+	high_resolution_clock::time_point StartFloatMult = high_resolution_clock::now();
+	for (long i = 0; i < ITER_LOOP; ++i)
+	{
+		a1 = fmod(b1 * c2, DEVINDER) + 2;	a2 = fmod(b2 * d2, DEVINDER) + 3;	a3 = fmod(a4 * c3, DEVINDER) + 4;	a4 = fmod(f4 * d5, DEVINDER) + 5;	a5 = fmod(b5 * g3, DEVINDER) + 6;
+		b1 = fmod(a1 * b3, DEVINDER) + 7;	b2 = fmod(c2 * d5, DEVINDER) + 8;	b3 = fmod(h3 * e3, DEVINDER) + 9;	b4 = fmod(f2 * a4, DEVINDER) + 2;	b5 = fmod(b2 * d5, DEVINDER) + 3;
+		c1 = fmod(d1 * e5, DEVINDER) + 4;	c2 = fmod(h2 * f2, DEVINDER) + 5;	c3 = fmod(d4 * a3, DEVINDER) + 6;	c4 = fmod(d4 * c1, DEVINDER) + 7;	c5 = fmod(f1 * f5, DEVINDER) + 8;
+		d1 = fmod(a4 * a1, DEVINDER) + 9;	d2 = fmod(g2 * f3, DEVINDER) + 2;	d3 = fmod(a1 * b5, DEVINDER) + 3;	d4 = fmod(b4 * h4, DEVINDER) + 4;	d5 = fmod(c5 * b1, DEVINDER) + 5;
+		e1 = fmod(e2 * e3, DEVINDER) + 6;	e2 = fmod(f3 * g2, DEVINDER) + 7;	e3 = fmod(h1 * h3, DEVINDER) + 8;	e4 = fmod(g1 * a4, DEVINDER) + 9;	e5 = fmod(b1 * c5, DEVINDER) + 2;
+		f1 = fmod(g3 * h5, DEVINDER) + 3;	f2 = fmod(g4 * h1, DEVINDER) + 4;	f3 = fmod(e3 * e5, DEVINDER) + 5;	f4 = fmod(g1 * h4, DEVINDER) + 6;	f5 = fmod(b5 * c2, DEVINDER) + 7;
+		g1 = fmod(b1 * e2, DEVINDER) + 8;	g2 = fmod(h2 * e3, DEVINDER) + 9;	g3 = fmod(h3 * e4, DEVINDER) + 2;	g4 = fmod(c2 * e5, DEVINDER) + 3;	g5 = fmod(h5 * e5, DEVINDER) + 4;
+		h1 = fmod(a1 * b1, DEVINDER) + 5;	h2 = fmod(e2 * f5, DEVINDER) + 6;	h3 = fmod(f3 * f2, DEVINDER) + 7;	h4 = fmod(a4 * a1, DEVINDER) + 8;	h5 = fmod(e5 * h5, DEVINDER) + 9;
+	}
+	duration<double> rezult = duration_cast<duration<double>>(high_resolution_clock::now() - StartFloatMult);
+	return rezult.count();
+}
+
+template <typename T>
+double FloatDivLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
+	T d1, T d2, T d3, T d4, T d5, T e1, T e2, T e3, T e4, T e5, T f1, T f2, T f3, T f4, T f5,
+	T g1, T g2, T g3, T g4, T g5, T h1, T h2, T h3, T h4, T h5)
+{
+	high_resolution_clock::time_point StartFloatDiv = high_resolution_clock::now();
+	for (long i = 0; i < ITER_LOOP; ++i)
+	{
+		a1 = b1 / c2 + 2;
+		a2 = b2 / d2 + 3;
+		a3 = a4 / c3 + 4;
+		a4 = f4 / d5 + 5;
+		a5 = b5 / g3 + 6;
+		b1 = a1 / b3 + 7;
+		b2 = c2 / d5 + 8;
+		b3 = h3 / e3 + 9;
+		b4 = f2 / a4 + 2;
+		b5 = b2 / d5 + 3;
+		c1 = d1 / e5 + 4;
+		c2 = h2 / f2 + 5;
+		c3 = d4 / a3 + 6;
+		c4 = d4 / c1 + 7;
+		c5 = f1 / f5 + 8;
+		d1 = a4 / a1 + 9;
+		d2 = g2 / f3 + 2;
+		d3 = a1 / b5 + 3;
+		d4 = b4 / h4 + 4;
+		d5 = c5 / b1 + 5;
+		e1 = e2 / e3 + 6;
+		e2 = f3 / g2 + 7;
+		e3 = h1 / h3 + 8;
+		e4 = g1 / a4 + 9;
+		e5 = b1 / c5 + 2;
+		f1 = g3 / h5 + 3;
+		f2 = g4 / h1 + 4;
+		f3 = e3 / e5 + 5;
+		f4 = g1 / h4 + 6;
+		f5 = b5 / c2 + 7;
+		g1 = b1 / e2 + 8;
+		g2 = h2 / e3 + 9;
+		g3 = h3 / e4 + 2;
+		g4 = c2 / e5 + 3;
+		g5 = h5 / e5 + 4;
+		h1 = a1 / b1 + 5;
+		h2 = e2 / f5 + 6;
+		h3 = f3 / f2 + 7;
+		h4 = a4 / a1 + 8;
+		h5 = e5 / h5 + 9;
+
+	}
+	duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - StartFloatDiv);
+	return result.count();
+}
+
+#pragma endregion
+
+void testFloat(bool& status)
+{
+#pragma region FLOAT_DEFINITION
+	dataType Float;
+	Float.Name = "float";
+	//const float M_FLOAT = FLT_MAX - 2;
+	srand(unsigned int(time(NULL)));
+	float a1 = float(rand() % DEVINDER + 2), a2 = float(rand() % DEVINDER + 2), a3 = float(rand() % DEVINDER + 2), a4 = float(rand() % DEVINDER + 2), a5 = float(rand() % DEVINDER + 2);
+	float b1 = float(rand() % DEVINDER + 2), b2 = float(rand() % DEVINDER + 2), b3 = float(rand() % DEVINDER + 2), b4 = float(rand() % DEVINDER + 2), b5 = float(rand() % DEVINDER + 2);
+	float c1 = float(rand() % DEVINDER + 2), c2 = float(rand() % DEVINDER + 2), c3 = float(rand() % DEVINDER + 2), c4 = float(rand() % DEVINDER + 2), c5 = float(rand() % DEVINDER + 2);
+	float d1 = float(rand() % DEVINDER + 2), d2 = float(rand() % DEVINDER + 2), d3 = float(rand() % DEVINDER + 2), d4 = float(rand() % DEVINDER + 2), d5 = float(rand() % DEVINDER + 2);
+	float e1 = float(rand() % DEVINDER + 2), e2 = float(rand() % DEVINDER + 2), e3 = float(rand() % DEVINDER + 2), e4 = float(rand() % DEVINDER + 2), e5 = float(rand() % DEVINDER + 2);
+	float f1 = float(rand() % DEVINDER + 2), f2 = float(rand() % DEVINDER + 2), f3 = float(rand() % DEVINDER + 2), f4 = float(rand() % DEVINDER + 2), f5 = float(rand() % DEVINDER + 2);
+	float g1 = float(rand() % DEVINDER + 2), g2 = float(rand() % DEVINDER + 2), g3 = float(rand() % DEVINDER + 2), g4 = float(rand() % DEVINDER + 2), g5 = float(rand() % DEVINDER + 2);
+	float h1 = float(rand() % DEVINDER + 2), h2 = float(rand() % DEVINDER + 2), h3 = float(rand() % DEVINDER + 2), h4 = float(rand() % DEVINDER + 2), h5 = float(rand() % DEVINDER + 2);
+
+#pragma endregion
+
+#pragma region EMPTY_FLOAT_LOOPS
+	const double EmptyFloatLoop = SimpleEmptyLoopFloat(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	const double EmptyFloatDiv = FloatEmptyDiv(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+#pragma endregion
+
+#pragma region FLOAT_BENCHMAKR
+
+	Float.TimeTotalPlus = FloatPlusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Float.Plus = NUMB_OF_VAR * ITER_LOOP / (Float.TimeTotalPlus - EmptyFloatLoop);
+
+	Float.TimeTotalMinus = FloatMinusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Float.Minus = NUMB_OF_VAR * ITER_LOOP / (Float.TimeTotalMinus - EmptyFloatLoop);
+
+	Float.TimeTotalMult = FloatPlusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Float.Mult = NUMB_OF_VAR * ITER_LOOP / (Float.TimeTotalMult - EmptyFloatLoop);
+
+	Float.TimeTotalDiv = FloatPlusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Float.Div = NUMB_OF_VAR * ITER_LOOP / (Float.TimeTotalDiv - EmptyFloatDiv);
+
+#pragma endregion
+
+	ShowAll(Float);
 	return;
 }
 

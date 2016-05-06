@@ -13,6 +13,7 @@ int main()
 	testChar(status);
 	testInt(status);
 	testLong(status);
+	testFloat(status);
 
 	system("pause");
 	return 0;

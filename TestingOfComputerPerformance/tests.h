@@ -1,5 +1,8 @@
 #pragma once
 
+#define DEVINDER SHRT_MAX 
+
+
 //only assignments
 template <typename T>
 double SimpleEmptyLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3, T b4, T b5, T c1, T c2, T c3, T c4, T c5,
@@ -46,5 +49,5 @@ double TestDivIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 void testChar(bool& status);
 void testInt(bool& status);
 void testLong(bool& status);
-void testFloat();
-void testDouble();
+void testFloat(bool& status);
+void testDouble(bool& status);
