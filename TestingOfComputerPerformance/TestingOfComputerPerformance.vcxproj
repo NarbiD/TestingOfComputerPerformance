@@ -110,12 +110,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataTypes.cpp" />
+    <ClCompile Include="IntegralType.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="IntegralType.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="view.h" />
