@@ -1,7 +1,8 @@
 #pragma once
 
 #define DEVINDER SHRT_MAX 
-
+#define ITER_LOOP 1000000
+#define NUMB_OF_VAR 40
 
 //only assignments
 template <typename T>

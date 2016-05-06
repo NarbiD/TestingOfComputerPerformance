@@ -1,6 +1,5 @@
 #include <iostream>
 #include <climits>
-#include <cfloat>
 #include <ctime>
 #include "tests.h"
 #include "view.h"
@@ -8,11 +7,6 @@
 #include <math.h>
 
 using namespace std::chrono;
-
-#define ITER_LOOP 1000000
-#define NUMB_OF_VAR 40
-//#define CPU_FREQUENCY 260000000
-
 
 #pragma region TEMPLATES_INTEGRAL
 
@@ -598,47 +592,14 @@ double FloatDivLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3,
 	high_resolution_clock::time_point StartFloatDiv = high_resolution_clock::now();
 	for (long i = 0; i < ITER_LOOP; ++i)
 	{
-		a1 = b1 / c2 + 2;
-		a2 = b2 / d2 + 3;
-		a3 = a4 / c3 + 4;
-		a4 = f4 / d5 + 5;
-		a5 = b5 / g3 + 6;
-		b1 = a1 / b3 + 7;
-		b2 = c2 / d5 + 8;
-		b3 = h3 / e3 + 9;
-		b4 = f2 / a4 + 2;
-		b5 = b2 / d5 + 3;
-		c1 = d1 / e5 + 4;
-		c2 = h2 / f2 + 5;
-		c3 = d4 / a3 + 6;
-		c4 = d4 / c1 + 7;
-		c5 = f1 / f5 + 8;
-		d1 = a4 / a1 + 9;
-		d2 = g2 / f3 + 2;
-		d3 = a1 / b5 + 3;
-		d4 = b4 / h4 + 4;
-		d5 = c5 / b1 + 5;
-		e1 = e2 / e3 + 6;
-		e2 = f3 / g2 + 7;
-		e3 = h1 / h3 + 8;
-		e4 = g1 / a4 + 9;
-		e5 = b1 / c5 + 2;
-		f1 = g3 / h5 + 3;
-		f2 = g4 / h1 + 4;
-		f3 = e3 / e5 + 5;
-		f4 = g1 / h4 + 6;
-		f5 = b5 / c2 + 7;
-		g1 = b1 / e2 + 8;
-		g2 = h2 / e3 + 9;
-		g3 = h3 / e4 + 2;
-		g4 = c2 / e5 + 3;
-		g5 = h5 / e5 + 4;
-		h1 = a1 / b1 + 5;
-		h2 = e2 / f5 + 6;
-		h3 = f3 / f2 + 7;
-		h4 = a4 / a1 + 8;
-		h5 = e5 / h5 + 9;
-
+		a1 = b1 / c2 + 2;	a2 = b2 / d2 + 3;	a3 = a4 / c3 + 4;	a4 = f4 / d5 + 5;	a5 = b5 / g3 + 6;
+		b1 = a1 / b3 + 7;	b2 = c2 / d5 + 8;	b3 = h3 / e3 + 9;	b4 = f2 / a4 + 2;	b5 = b2 / d5 + 3;
+		c1 = d1 / e5 + 4;	c2 = h2 / f2 + 5;	c3 = d4 / a3 + 6;	c4 = d4 / c1 + 7;	c5 = f1 / f5 + 8;
+		d1 = a4 / a1 + 9;	d2 = g2 / f3 + 2;	d3 = a1 / b5 + 3;	d4 = b4 / h4 + 4;	d5 = c5 / b1 + 5;
+		e1 = e2 / e3 + 6;	e2 = f3 / g2 + 7;	e3 = h1 / h3 + 8;	e4 = g1 / a4 + 9;	e5 = b1 / c5 + 2;
+		f1 = g3 / h5 + 3;	f2 = g4 / h1 + 4;	f3 = e3 / e5 + 5;	f4 = g1 / h4 + 6;	f5 = b5 / c2 + 7;
+		g1 = b1 / e2 + 8;	g2 = h2 / e3 + 9;	g3 = h3 / e4 + 2;	g4 = c2 / e5 + 3;	g5 = h5 / e5 + 4;
+		h1 = a1 / b1 + 5;	h2 = e2 / f5 + 6;	h3 = f3 / f2 + 7;	h4 = a4 / a1 + 8;	h5 = e5 / h5 + 9;
 	}
 	duration<double> result = duration_cast<duration<double>>(high_resolution_clock::now() - StartFloatDiv);
 	return result.count();
@@ -649,9 +610,9 @@ double FloatDivLoop(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T b3,
 void testFloat(bool& status)
 {
 #pragma region FLOAT_DEFINITION
+
 	dataType Float;
 	Float.Name = "float";
-	//const float M_FLOAT = FLT_MAX - 2;
 	srand(unsigned int(time(NULL)));
 	float a1 = float(rand() % DEVINDER + 2), a2 = float(rand() % DEVINDER + 2), a3 = float(rand() % DEVINDER + 2), a4 = float(rand() % DEVINDER + 2), a5 = float(rand() % DEVINDER + 2);
 	float b1 = float(rand() % DEVINDER + 2), b2 = float(rand() % DEVINDER + 2), b3 = float(rand() % DEVINDER + 2), b4 = float(rand() % DEVINDER + 2), b5 = float(rand() % DEVINDER + 2);
@@ -665,11 +626,13 @@ void testFloat(bool& status)
 #pragma endregion
 
 #pragma region EMPTY_FLOAT_LOOPS
+
 	const double EmptyFloatLoop = SimpleEmptyLoopFloat(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 	const double EmptyFloatDiv = FloatEmptyDiv(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
 #pragma endregion
 
 #pragma region FLOAT_BENCHMAKR
@@ -703,6 +666,7 @@ void testFloat(bool& status)
 void testDouble(bool& status)
 {
 #pragma region DOUBLE_DEFINITION
+
 	dataType Double;
 	Double.Name = "double";
 	srand(unsigned int(time(NULL)));
@@ -714,14 +678,17 @@ void testDouble(bool& status)
 	double f1 = double(rand() % DEVINDER + 2), f2 = double(rand() % DEVINDER + 2), f3 = double(rand() % DEVINDER + 2), f4 = double(rand() % DEVINDER + 2), f5 = double(rand() % DEVINDER + 2);
 	double g1 = double(rand() % DEVINDER + 2), g2 = double(rand() % DEVINDER + 2), g3 = double(rand() % DEVINDER + 2), g4 = double(rand() % DEVINDER + 2), g5 = double(rand() % DEVINDER + 2);
 	double h1 = double(rand() % DEVINDER + 2), h2 = double(rand() % DEVINDER + 2), h3 = double(rand() % DEVINDER + 2), h4 = double(rand() % DEVINDER + 2), h5 = double(rand() % DEVINDER + 2);
+
 #pragma endregion
 
 #pragma region EMPTY_DOUBLE_LOOPS
+
 	const double EmptyDoubleLoop = SimpleEmptyLoopFloat(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 	const double EmptyDoubleDiv = FloatEmptyDiv(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
 #pragma endregion
 
 #pragma region DOUBLE_BENCHMAKR
