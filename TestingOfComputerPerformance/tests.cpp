@@ -413,10 +413,6 @@ void testLong(bool& status)
 	return;
 }
 
-void testDouble(bool & status)
-{
-}
-
 void testChar(bool& status)
 {
 #pragma region CHAR_DEFINITION
@@ -688,12 +684,12 @@ void testFloat(bool& status)
 
 	Float.Minus = NUMB_OF_VAR * ITER_LOOP / (Float.TimeTotalMinus - EmptyFloatLoop);
 
-	Float.TimeTotalMult = FloatPlusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Float.TimeTotalMult = FloatMultLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 	Float.Mult = NUMB_OF_VAR * ITER_LOOP / (Float.TimeTotalMult - EmptyFloatLoop);
 
-	Float.TimeTotalDiv = FloatPlusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+	Float.TimeTotalDiv = FloatDivLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
 		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
 
 	Float.Div = NUMB_OF_VAR * ITER_LOOP / (Float.TimeTotalDiv - EmptyFloatDiv);
@@ -704,8 +700,54 @@ void testFloat(bool& status)
 	return;
 }
 
-void testDouble()
+void testDouble(bool& status)
 {
+#pragma region DOUBLE_DEFINITION
+	dataType Double;
+	Double.Name = "double";
+	srand(unsigned int(time(NULL)));
+	double a1 = double(rand() % DEVINDER + 2), a2 = double(rand() % DEVINDER + 2), a3 = double(rand() % DEVINDER + 2), a4 = double(rand() % DEVINDER + 2), a5 = double(rand() % DEVINDER + 2);
+	double b1 = double(rand() % DEVINDER + 2), b2 = double(rand() % DEVINDER + 2), b3 = double(rand() % DEVINDER + 2), b4 = double(rand() % DEVINDER + 2), b5 = double(rand() % DEVINDER + 2);
+	double c1 = double(rand() % DEVINDER + 2), c2 = double(rand() % DEVINDER + 2), c3 = double(rand() % DEVINDER + 2), c4 = double(rand() % DEVINDER + 2), c5 = double(rand() % DEVINDER + 2);
+	double d1 = double(rand() % DEVINDER + 2), d2 = double(rand() % DEVINDER + 2), d3 = double(rand() % DEVINDER + 2), d4 = double(rand() % DEVINDER + 2), d5 = double(rand() % DEVINDER + 2);
+	double e1 = double(rand() % DEVINDER + 2), e2 = double(rand() % DEVINDER + 2), e3 = double(rand() % DEVINDER + 2), e4 = double(rand() % DEVINDER + 2), e5 = double(rand() % DEVINDER + 2);
+	double f1 = double(rand() % DEVINDER + 2), f2 = double(rand() % DEVINDER + 2), f3 = double(rand() % DEVINDER + 2), f4 = double(rand() % DEVINDER + 2), f5 = double(rand() % DEVINDER + 2);
+	double g1 = double(rand() % DEVINDER + 2), g2 = double(rand() % DEVINDER + 2), g3 = double(rand() % DEVINDER + 2), g4 = double(rand() % DEVINDER + 2), g5 = double(rand() % DEVINDER + 2);
+	double h1 = double(rand() % DEVINDER + 2), h2 = double(rand() % DEVINDER + 2), h3 = double(rand() % DEVINDER + 2), h4 = double(rand() % DEVINDER + 2), h5 = double(rand() % DEVINDER + 2);
+#pragma endregion
 
+#pragma region EMPTY_DOUBLE_LOOPS
+	const double EmptyDoubleLoop = SimpleEmptyLoopFloat(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	const double EmptyDoubleDiv = FloatEmptyDiv(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+#pragma endregion
+
+#pragma region DOUBLE_BENCHMAKR
+
+	Double.TimeTotalPlus = FloatPlusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Double.Plus = NUMB_OF_VAR * ITER_LOOP / (Double.TimeTotalPlus - EmptyDoubleLoop);
+
+	Double.TimeTotalMinus = FloatMinusLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Double.Minus = NUMB_OF_VAR * ITER_LOOP / (Double.TimeTotalMinus - EmptyDoubleLoop);
+
+	Double.TimeTotalMult = FloatMultLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Double.Mult = NUMB_OF_VAR * ITER_LOOP / (Double.TimeTotalMult - EmptyDoubleLoop);
+
+	Double.TimeTotalDiv = FloatDivLoop(status, a1, a2, a3, a4, a5, b1, b2, b3, b4, b5, c1, c2, c3, c4, c5,
+		d1, d2, d3, d4, d5, e1, e2, e3, e4, e5, f1, f2, f3, f4, f5, g1, g2, g3, g4, g5, h1, h2, h3, h4, h5);
+
+	Double.Div = NUMB_OF_VAR * ITER_LOOP / (Double.TimeTotalDiv - EmptyDoubleDiv);
+
+#pragma endregion
+
+	ShowAll(Double);
 	return;
 }

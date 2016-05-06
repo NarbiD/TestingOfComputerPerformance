@@ -14,6 +14,7 @@ int main()
 	testInt(status);
 	testLong(status);
 	testFloat(status);
+	testDouble(status);
 
 	system("pause");
 	return 0;
