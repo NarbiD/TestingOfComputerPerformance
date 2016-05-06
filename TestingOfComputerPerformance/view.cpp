@@ -1,22 +1,22 @@
 #include <iostream>
 #include <sstream>
+#include <stdlib.h>
 #include "view.h"
 
 using namespace std;
 
+//selection of a method of measuring time
 void StartMenu(bool& status)
 {
 	int temp;
 	cout << "1. getCPUTime()" << endl;
 	cout << "2. chrono" << endl;
-	do
-	{
-		cin >> temp;
-	} while (!(temp == 1 && temp == 2));
+	cin >> temp;
 	if (temp == 1)
 		status = true;
 	else
 		status = false;
+	system("cls");
 	return;
 }
 
@@ -25,17 +25,18 @@ void StartMenu(bool& status)
 void ShowAll(dataType &type)
 {
 	SelectMaxValue(type);
-	Show("+", "int", type.Plus, type.MaxValue);
-	Show("-", "int", type.Minus, type.MaxValue);
-	Show("*", "int", type.Mult, type.MaxValue);
-	Show("/", "int", type.Div, type.MaxValue);
+	Show("+", type.Name, type.Plus, type.MaxValue);
+	Show("-", type.Name, type.Minus, type.MaxValue);
+	Show("*", type.Name, type.Mult, type.MaxValue);
+	Show("/", type.Name, type.Div, type.MaxValue);
+	cout << endl;
 }
 
 //select max value among time of all operation
 void SelectMaxValue(dataType& type)
 {
-	type.MaxValue = type.Div;
-	if (type.MaxValue < type.Plus) type.MaxValue = type.Plus;
+	type.MaxValue = type.Plus;
+	if (type.MaxValue < type.Div) type.MaxValue = type.Div;
 	if (type.MaxValue < type.Minus) type.MaxValue = type.Minus;
 	if (type.MaxValue < type.Mult) type.MaxValue = type.Mult;
 }

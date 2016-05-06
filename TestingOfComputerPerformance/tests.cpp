@@ -288,6 +288,7 @@ double TestDivIntegral(bool status, T a1, T a2, T a3, T a4, T a5, T b1, T b2, T 
 }
 
 
+
 #pragma endregion
 
 void testInt(bool& status)
