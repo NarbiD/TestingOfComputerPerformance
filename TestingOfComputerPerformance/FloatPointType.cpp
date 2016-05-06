@@ -2,10 +2,6 @@
 
 using namespace std::chrono;
 
-template <typename Type>
-FloatPointType<Type>::FloatPointType(std::string) : DataTypes<Type>(std::string)
-{
-}
 
 template <typename Type>
 double FloatPointType<Type>::EmptyLoop()

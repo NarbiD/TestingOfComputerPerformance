@@ -8,7 +8,9 @@ class FloatPointType :
 	public DataTypes<Type>
 {
 public:
-	FloatPointType<Type>(std::string) : DataTypes<Type>(std::string);
+	FloatPointType<Type>(std::string) : DataTypes<Type>(std::string)
+	{
+	}
 
 	double EmptyLoop();
 	double EmptyLoopDiv();
@@ -20,4 +22,3 @@ public:
 
 	~FloatPointType();
 };
-

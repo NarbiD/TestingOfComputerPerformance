@@ -9,7 +9,9 @@ class IntegralType :
 {
 
 public:
-	IntegralType<Type>(std::string) : DataTypes<Type>(std::string);
+	IntegralType<Type>(std::string) : DataTypes<Type>(std::string)
+	{
+	}
 
 	double EmptyLoop();
 	double EmptyLoopMult();
@@ -23,4 +25,3 @@ public:
 
 	~IntegralType();
 };
-

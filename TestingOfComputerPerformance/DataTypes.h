@@ -23,9 +23,6 @@ private:
 	void Show(std::string sign, double OperationPerSec);
 
 protected:
-
-
-
 	std::string Name;
 
 	double Plus, Minus, Mult, Div, MaxValue;							//time of operations
@@ -45,12 +42,7 @@ protected:
 
 public:
 	DataTypes(std::string name);
-
-	void ShowAll();
-
-	
-
-	
+	void ShowAll();	
 
 	~DataTypes();
 };
