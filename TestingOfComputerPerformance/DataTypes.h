@@ -19,7 +19,8 @@ private:
 		const int fifth = 4;						//percentage
 	};
 
-	void Show(string sign, double OperationPerSec);
+	void SelectMaxValue();
+	void Show(std::string sign, double OperationPerSec);
 
 protected:
 
@@ -46,6 +47,8 @@ public:
 	DataTypes(std::string name);
 
 	void ShowAll();
+
+	
 
 	
 
