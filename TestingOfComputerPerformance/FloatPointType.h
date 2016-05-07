@@ -1,18 +1,17 @@
 #pragma once
 #include "DataTypes.h"
 
-#define DEVINDER 127
+#define DEVIDER 127
 #define ITER_LOOP_FLOAT 100000
-#define NUMB_OF_VAR 40
+#define NUMB_OF_FLOAT_VAR 40
 
 template <typename Type>
 class FloatPointType :
 	public DataTypes<Type>
 {
 public:
-	FloatPointType();// : DataTypes<Type>()
+	FloatPointType() : DataTypes<Type>() {}
 	
-
 	double EmptyLoop();
 	double EmptyLoopDiv();
 

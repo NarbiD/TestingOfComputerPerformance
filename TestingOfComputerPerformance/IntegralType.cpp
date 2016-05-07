@@ -3,27 +3,6 @@
 using namespace std::chrono;
 
 
-
-template<typename Type>
-void IntegralType<Type>::SelectMaxValue()
-{
-}
-
-template<typename Type>
-IntegralType<Type>::IntegralType()
-{
-	Name = typeid(Type).name();
-
-	a1 = (rand() % SCHAR_MAX) + 2, a2 = (rand() % SCHAR_MAX) + 2, a3 = (rand() % SCHAR_MAX) + 2, a4 = (rand() % SCHAR_MAX) + 2, a5 = (rand() % SCHAR_MAX) + 2;
-	b1 = (rand() % SCHAR_MAX) + 2, b2 = (rand() % SCHAR_MAX) + 2, b3 = (rand() % SCHAR_MAX) + 2, b4 = (rand() % SCHAR_MAX) + 2, b5 = (rand() % SCHAR_MAX) + 2;
-	c1 = (rand() % SCHAR_MAX) + 2, c2 = (rand() % SCHAR_MAX) + 2, c3 = (rand() % SCHAR_MAX) + 2, c4 = (rand() % SCHAR_MAX) + 2, c5 = (rand() % SCHAR_MAX) + 2;
-	d1 = (rand() % SCHAR_MAX) + 2, d2 = (rand() % SCHAR_MAX) + 2, d3 = (rand() % SCHAR_MAX) + 2, d4 = (rand() % SCHAR_MAX) + 2, d5 = (rand() % SCHAR_MAX) + 2;
-	e1 = (rand() % SCHAR_MAX) + 2, e2 = (rand() % SCHAR_MAX) + 2, e3 = (rand() % SCHAR_MAX) + 2, e4 = (rand() % SCHAR_MAX) + 2, e5 = (rand() % SCHAR_MAX) + 2;
-	f1 = (rand() % SCHAR_MAX) + 2, f2 = (rand() % SCHAR_MAX) + 2, f3 = (rand() % SCHAR_MAX) + 2, f4 = (rand() % SCHAR_MAX) + 2, f5 = (rand() % SCHAR_MAX) + 2;
-	g1 = (rand() % SCHAR_MAX) + 2, g2 = (rand() % SCHAR_MAX) + 2, g3 = (rand() % SCHAR_MAX) + 2, g4 = (rand() % SCHAR_MAX) + 2, g5 = (rand() % SCHAR_MAX) + 2;
-	h1 = (rand() % SCHAR_MAX) + 2, h2 = (rand() % SCHAR_MAX) + 2, h3 = (rand() % SCHAR_MAX) + 2, h4 = (rand() % SCHAR_MAX) + 2, h5 = (rand() % SCHAR_MAX) + 2;
-}
-
 template <typename Type>
 double IntegralType<Type>::EmptyLoop()
 {
@@ -209,27 +188,27 @@ double IntegralType<Type>::TestDiv()
 template<typename Type>
 void IntegralType<Type>::Test()
 {
-	double Empty = this.EmptyLoop();
-	double EmptyMult = this.EmptyLoopMult();
-	double EmptyDiv = this.EmptyLoopDiv();
+	double Empty = EmptyLoop();
+	double EmptyMult = EmptyLoopMult();
+	double EmptyDiv = EmptyLoopDiv();
 
 	TimeTotalPlus = TestPlus();
 	
-	Plus = NUMB_OF_VAR * ITER_LOOP / (TimeTotalPlus - Empty);
+	Plus = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalPlus - Empty);
 
 	TimeTotalMinus = TestMinus();
 
-	Minus = NUMB_OF_VAR * ITER_LOOP / (TimeTotalMinus - Empty);
+	Minus = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalMinus - Empty);
 
 	TimeTotalMult = TestMult();
 
-	Mult = NUMB_OF_VAR * ITER_LOOP / (TimeTotalMult - EmptyMult);
+	Mult = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalMult - EmptyMult);
 
-	TimeTotalDiv = TestDiv;
+	TimeTotalDiv = TestDiv();
 
-	Div = NUMB_OF_VAR * ITER_LOOP / (TimeTotalDiv - EmptyDiv);
+	Div = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalDiv - EmptyDiv);
 	
-	this.ShowAll();
+	ShowAll();
 }
 
 

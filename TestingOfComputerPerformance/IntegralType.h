@@ -3,16 +3,15 @@
 #include "DataTypes.h"
 
 #define ITER_LOOP 100000
-#define NUMB_OF_VAR 40
+#define NUMB_OF_INT_VAR 40
 
 template <typename Type>
 class IntegralType :
 	public DataTypes<Type>
 {
-
 public:
-	IntegralType();// : DataTypes<Type>()
-
+	IntegralType() : DataTypes<Type>() {}
+	
 	double EmptyLoop();
 	double EmptyLoopMult();
 	double EmptyLoopDiv();
@@ -23,7 +22,7 @@ public:
 	double TestDiv();
 
 	void Test();
-
+	
 private:
 	~IntegralType();
 };
