@@ -188,25 +188,60 @@ double IntegralType<Type>::TestDiv()
 template<typename Type>
 void IntegralType<Type>::Test()
 {
-	double Empty = EmptyLoop();
-	double EmptyMult = EmptyLoopMult();
-	double EmptyDiv = EmptyLoopDiv();
+	const double NUMERATOR = NUMB_OF_INT_VAR * ITER_LOOP;
 
-	TimeTotalPlus = TestPlus();
+	do
+		Empty = EmptyLoop();
+	while (Empty <= 0);
+
+	do
+		EmptyMult = EmptyLoopMult();
+	while (EmptyMult <= 0);
+
+	do
+		Empty = EmptyLoop();
+	while (Empty <= 0);
+
+	do
+		EmptyDiv = EmptyLoopDiv();
+	while (EmptyDiv <= 0);
+
+	do
+		Empty = EmptyLoop();
+	while (Empty <= 0);
+
+	do
+		TimeTotalPlus = TestPlus();
+	while (TimeTotalPlus <= Empty);
+
+	do
+		Empty = EmptyLoop();
+	while (Empty <= 0);
+
+	do
+		TimeTotalMinus = TestMinus();
+	while (TimeTotalMinus <= Empty);
+
+	do
+		Empty = EmptyLoopMult();
+	while (Empty <= 0);
+
+	do
+		TimeTotalMult = TestMult();
+	while (TimeTotalMult <= EmptyMult);
+
+	do
+		Empty = EmptyLoopDiv();
+	while (Empty <= 0);
+
+	do
+		TimeTotalDiv = TestDiv();
+	while (TimeTotalDiv <= EmptyDiv);
 	
-	Plus = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalPlus - Empty);
-
-	TimeTotalMinus = TestMinus();
-
-	Minus = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalMinus - Empty);
-
-	TimeTotalMult = TestMult();
-
-	Mult = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalMult - EmptyMult);
-
-	TimeTotalDiv = TestDiv();
-
-	Div = NUMB_OF_INT_VAR * ITER_LOOP / (TimeTotalDiv - EmptyDiv);
+	Plus = NUMERATOR / (TimeTotalPlus - Empty);
+	Minus = NUMERATOR / (TimeTotalMinus - Empty);
+	Mult = NUMERATOR / (TimeTotalMult - EmptyMult);
+	Div = NUMERATOR / (TimeTotalDiv - EmptyDiv);
 	
 	ShowAll();
 }

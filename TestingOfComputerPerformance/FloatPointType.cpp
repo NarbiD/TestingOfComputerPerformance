@@ -138,24 +138,44 @@ double FloatPointType<Type>::TestDiv()
 template<typename Type>
 void FloatPointType<Type>::Test()
 {
-	double Empty = EmptyLoop();
-	double EmptyDiv = EmptyLoopDiv();
+	const double NUMERATOR = NUMB_OF_FLOAT_VAR * ITER_LOOP_FLOAT;
 
-	TimeTotalPlus = TestPlus();
+	do
+		Empty = EmptyLoop();
+	while (Empty <= 0.0);
 
-	Plus = NUMB_OF_FLOAT_VAR * ITER_LOOP_FLOAT / (TimeTotalPlus - Empty);
+	do
+		TimeTotalPlus = TestPlus();
+	while (TimeTotalPlus <= Empty);
 
-	TimeTotalMinus = TestMinus();
+	do
+		Empty = EmptyLoop();
+	while (Empty <= 0.0);
 
-	Minus = NUMB_OF_FLOAT_VAR * ITER_LOOP_FLOAT / (TimeTotalMinus - Empty);
+	do
+		TimeTotalMinus = TestMinus();
+	while (TimeTotalMinus <= Empty);
 
-	TimeTotalMult = TestMult();
+	do
+		Empty = EmptyLoop();
+	while (Empty <= 0.0);
 
-	Mult = NUMB_OF_FLOAT_VAR * ITER_LOOP_FLOAT / (TimeTotalMult - Empty);
+	do
+		TimeTotalMult = TestMult();
+	while (TimeTotalMult <= Empty);
 
-	TimeTotalDiv = TestDiv();
+	do
+		EmptyDiv = EmptyLoopDiv();
+	while (EmptyDiv <= 0.0);
 
-	Div = NUMB_OF_FLOAT_VAR * ITER_LOOP_FLOAT / (TimeTotalDiv - EmptyDiv);
+	do
+		TimeTotalDiv = TestDiv();
+	while (TimeTotalDiv <= EmptyDiv);
+
+	Plus = NUMERATOR / (TimeTotalPlus - Empty);
+	Minus = NUMERATOR / (TimeTotalMinus - Empty);
+	Mult = NUMERATOR / (TimeTotalMult - Empty);
+	Div = NUMERATOR / (TimeTotalDiv - EmptyDiv);
 
 	ShowAll();
 }

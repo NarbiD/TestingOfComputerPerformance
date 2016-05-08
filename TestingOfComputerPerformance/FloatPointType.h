@@ -9,6 +9,11 @@ template <typename Type>
 class FloatPointType :
 	public DataTypes<Type>
 {
+private:
+
+	double Empty;
+	double EmptyDiv;
+
 public:
 	FloatPointType() : DataTypes<Type>() {}
 	

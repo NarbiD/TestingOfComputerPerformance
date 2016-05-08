@@ -9,6 +9,12 @@ template <typename Type>
 class IntegralType :
 	public DataTypes<Type>
 {
+private:
+
+	double Empty;
+	double EmptyMult;
+	double EmptyDiv;
+
 public:
 	IntegralType() : DataTypes<Type>() {}
 	
@@ -23,6 +29,5 @@ public:
 
 	void Test();
 	
-private:
 	~IntegralType();
 };
