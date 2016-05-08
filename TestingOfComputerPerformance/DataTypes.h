@@ -8,7 +8,7 @@
 template <typename Type>
 class DataTypes
 {
-private:
+protected:
 	struct column
 	{
 		const int first = 2;						//sign of operation
@@ -21,7 +21,7 @@ private:
 	void Show(std::string sign, double OperationPerSec);
 	void ShowAll();
 
-protected:
+
 	std::string Name;
 
 	double Plus, Minus, Mult, Div, MaxValue;							//time of operations		
