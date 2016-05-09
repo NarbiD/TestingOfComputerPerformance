@@ -140,41 +140,21 @@ void FloatPointType<Type>::Test()
 {
 	const double NUMERATOR = NUMB_OF_FLOAT_VAR * ITER_LOOP_FLOAT;
 
-	do
+	do {
 		Empty = EmptyLoop();
-	while (Empty <= 0.0);
-
-	do
 		TimeTotalPlus = TestPlus();
-	while (TimeTotalPlus <= Empty);
-
-	do
-		Empty = EmptyLoop();
-	while (Empty <= 0.0);
-
-	do
 		TimeTotalMinus = TestMinus();
-	while (TimeTotalMinus <= Empty);
-
-	do
-		Empty = EmptyLoop();
-	while (Empty <= 0.0);
-
-	do
 		TimeTotalMult = TestMult();
-	while (TimeTotalMult <= Empty);
+	} while (TimeTotalPlus <= Empty || TimeTotalMinus <= Empty || TimeTotalMult <= Empty);
 
-	do
+	do {
 		EmptyDiv = EmptyLoopDiv();
-	while (EmptyDiv <= 0.0);
-
-	do
 		TimeTotalDiv = TestDiv();
-	while (TimeTotalDiv <= EmptyDiv);
+	} while (TimeTotalDiv <= EmptyDiv);
 
 	Plus = NUMERATOR / (TimeTotalPlus - Empty);
 	Minus = NUMERATOR / (TimeTotalMinus - Empty);
-	Mult = NUMERATOR / (TimeTotalMult - Empty);
+	Mult = NUMERATOR / (TimeTotalMult - EmptyMult);
 	Div = NUMERATOR / (TimeTotalDiv - EmptyDiv);
 
 	ShowAll();
