@@ -186,9 +186,10 @@ double IntegralType<Type>::TestDiv()
 }
 
 template<typename Type>
-void IntegralType<Type>::Test()
+void IntegralType<Type>::Retest(double& plus, double& minus, double& mult, double& div)
 {
 	const double NUMERATOR = NUMB_OF_INT_VAR * ITER_LOOP;
+	srand(time(NULL));
 
 	do {
 		Empty = EmptyLoop();
@@ -202,17 +203,16 @@ void IntegralType<Type>::Test()
 	} while (TimeTotalMult <= EmptyMult);
 
 	do {
-		Empty = EmptyLoopDiv();
+		EmptyDiv = EmptyLoopDiv();
 		TimeTotalDiv = TestDiv();
 	} while (TimeTotalDiv <= EmptyDiv);
 
-	Plus = NUMERATOR / (TimeTotalPlus - Empty);
-	Minus = NUMERATOR / (TimeTotalMinus - Empty);
-	Mult = NUMERATOR / (TimeTotalMult - EmptyMult);
-	Div = NUMERATOR / (TimeTotalDiv - EmptyDiv);
-
-	ShowAll();
+	plus = NUMERATOR / fabs(TimeTotalPlus - Empty);
+	minus = NUMERATOR / fabs(TimeTotalMinus - Empty);
+	mult = NUMERATOR / fabs(TimeTotalMult - EmptyMult);
+	div = NUMERATOR / fabs(TimeTotalDiv - EmptyDiv);
 }
+
 
 
 template<typename Type>

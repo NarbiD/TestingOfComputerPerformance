@@ -27,7 +27,11 @@ public:
 	double TestMult();
 	double TestDiv();
 
-	void Test();
+	void Retest(double& plus, double& minus, double& mult, double& div);
+
+	//void SelectAverage(double * arr);
+
+	//void Test();
 	
 	~IntegralType();
 };

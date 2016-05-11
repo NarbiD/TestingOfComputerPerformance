@@ -8,6 +8,7 @@
 
 using namespace std;
 
+#pragma optimize("", off)
 int main()
 {
 	IntegralType<int>* Int = new IntegralType<int>();
@@ -22,6 +23,13 @@ int main()
 	Float->Test();
 	Double->Test();
 
+	Char->ShowAll();
+	Int->ShowAll();
+	Long->ShowAll();
+	Float->ShowAll();
+	Double->ShowAll();
+
 	system("pause");
 	return 0;
 }
+#pragma optimize("", on)

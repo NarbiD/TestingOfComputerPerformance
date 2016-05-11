@@ -136,9 +136,10 @@ double FloatPointType<Type>::TestDiv()
 }
 
 template<typename Type>
-void FloatPointType<Type>::Test()
+void FloatPointType<Type>::Retest(double& plus, double& minus, double& mult, double& div)
 {
 	const double NUMERATOR = NUMB_OF_FLOAT_VAR * ITER_LOOP_FLOAT;
+	srand(time(NULL));
 
 	do {
 		Empty = EmptyLoop();
@@ -152,12 +153,10 @@ void FloatPointType<Type>::Test()
 		TimeTotalDiv = TestDiv();
 	} while (TimeTotalDiv <= EmptyDiv);
 
-	Plus = NUMERATOR / (TimeTotalPlus - Empty);
-	Minus = NUMERATOR / (TimeTotalMinus - Empty);
-	Mult = NUMERATOR / (TimeTotalMult - EmptyMult);
-	Div = NUMERATOR / (TimeTotalDiv - EmptyDiv);
-
-	ShowAll();
+	plus = NUMERATOR / (TimeTotalPlus - Empty);
+	minus = NUMERATOR / (TimeTotalMinus - Empty);
+	mult = NUMERATOR / (TimeTotalMult - Empty);
+	div = NUMERATOR / (TimeTotalDiv - EmptyDiv);
 }
 
 
@@ -165,4 +164,6 @@ template <typename Type>
 FloatPointType<Type>::~FloatPointType()
 {
 }
+
+
 

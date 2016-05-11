@@ -3,13 +3,14 @@
 #include <sstream>
 #include "DataTypes.h"
 #include <typeinfo>
+#include <cstdlib>
 
 using namespace std;
 
 template<typename Type>
 void DataTypes<Type>::Show(string sign, double OperationPerSec)
 {
-	column show;			//width of columns
+	columns show;			//width of columns
 	stringstream ost;		// stream of string
 	string str = "";
 
@@ -58,7 +59,7 @@ template<typename Type>
 DataTypes<Type>::DataTypes()
 {
 	Name = typeid(Type).name();
-
+	srand(time(NULL));
 	a1 = (rand() % SCHAR_MAX) + 2; a2 = (rand() % SCHAR_MAX) + 2; a3 = (rand() % SCHAR_MAX) + 2; a4 = (rand() % SCHAR_MAX) + 2; a5 = (rand() % SCHAR_MAX) + 2;
 	b1 = (rand() % SCHAR_MAX) + 2; b2 = (rand() % SCHAR_MAX) + 2; b3 = (rand() % SCHAR_MAX) + 2; b4 = (rand() % SCHAR_MAX) + 2; b5 = (rand() % SCHAR_MAX) + 2;
 	c1 = (rand() % SCHAR_MAX) + 2; c2 = (rand() % SCHAR_MAX) + 2; c3 = (rand() % SCHAR_MAX) + 2; c4 = (rand() % SCHAR_MAX) + 2; c5 = (rand() % SCHAR_MAX) + 2;
@@ -90,9 +91,33 @@ void DataTypes<Type>::SelectMaxValue()
 	if (MaxValue < Mult) MaxValue = Mult;
 }
 
+template<typename Type>
+void DataTypes<Type>::Test()
+{
+	for (int i = 0; i < NUMBER_OF_LOOP_STARTS; ++i)
+	{
+		Retest(setPlus[i], setMinus[i], setMult[i], setDiv[i]);
+		Plus = SelectAverage(setPlus);
+		Minus = SelectAverage(setMinus);
+		Mult = SelectAverage(setMult);
+		Div = SelectAverage(setDiv);
+	}
+}
+
+template<typename Type>
+double DataTypes<Type>::SelectAverage(double *arr)
+{
+	double sum = 0.0;
+
+	for (int i = 0; i < NUMBER_OF_LOOP_STARTS; ++i)
+		sum += arr[i];
+
+	return sum / (double)NUMBER_OF_LOOP_STARTS;
+}
 
 
 template<typename Type>
 DataTypes<Type>::~DataTypes()
 {
 }
+
