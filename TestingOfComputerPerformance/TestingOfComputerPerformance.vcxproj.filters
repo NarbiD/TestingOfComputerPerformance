@@ -18,13 +18,13 @@
     <ClCompile Include="DataTypes.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="IntegralType.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="FloatPointType.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Benchmark.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerType.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="DataTypes.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="IntegralType.h">
+    <ClInclude Include="FloatPointType.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="FloatPointType.h">
+    <ClInclude Include="IntegerType.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

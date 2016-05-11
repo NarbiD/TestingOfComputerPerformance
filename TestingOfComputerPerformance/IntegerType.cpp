@@ -1,10 +1,10 @@
-#include "IntegralType.h"
+#include "IntegerType.h"
 
 using namespace std::chrono;
 
 
 template <typename Type>
-double IntegralType<Type>::EmptyLoop()
+double IntegerType<Type>::EmptyLoop()
 {
 	StartTime = high_resolution_clock::now();
 
@@ -27,7 +27,7 @@ double IntegralType<Type>::EmptyLoop()
 
 
 template <typename Type>
-double IntegralType<Type>::EmptyLoopMult()
+double IntegerType<Type>::EmptyLoopMult()
 {
 	StartTime = high_resolution_clock::now();
 
@@ -59,7 +59,7 @@ double IntegralType<Type>::EmptyLoopMult()
 
 
 template <typename Type>
-double IntegralType<Type>::EmptyLoopDiv()
+double IntegerType<Type>::EmptyLoopDiv()
 {
 	StartTime = high_resolution_clock::now();
 
@@ -81,7 +81,7 @@ double IntegralType<Type>::EmptyLoopDiv()
 }
 
 template<typename Type>
-double IntegralType<Type>::TestPlus()
+double IntegerType<Type>::TestPlus()
 {
 	StartTime = high_resolution_clock::now();
 
@@ -103,7 +103,7 @@ double IntegralType<Type>::TestPlus()
 }
 
 template<typename Type>
-double IntegralType<Type>::TestMinus()
+double IntegerType<Type>::TestMinus()
 {
 	StartTime = high_resolution_clock::now();
 
@@ -125,7 +125,7 @@ double IntegralType<Type>::TestMinus()
 }
 
 template<typename Type>
-double IntegralType<Type>::TestMult()
+double IntegerType<Type>::TestMult()
 {
 	StartTime = high_resolution_clock::now();
 
@@ -156,10 +156,11 @@ double IntegralType<Type>::TestMult()
 }
 
 template<typename Type>
-double IntegralType<Type>::TestDiv()
+double IntegerType<Type>::TestDiv()
 {
 	StartTime = high_resolution_clock::now();
 
+	srand(time(NULL));
 	for (int i = 0; i < ITER_LOOP; ++i)
 	{
 		a1 = a2 / (c2 == 0 ? 5 : c2);   a2 = b2 / (d2 == 0 ? 7 : d2);	a3 = a4 / (c3 == 0 ? 11 : c3);
@@ -186,11 +187,8 @@ double IntegralType<Type>::TestDiv()
 }
 
 template<typename Type>
-void IntegralType<Type>::Retest(double& plus, double& minus, double& mult, double& div)
+void IntegerType<Type>::Retest(double& _plus, double& _minus, double& _mult, double& _div)
 {
-	const double NUMERATOR = NUMB_OF_INT_VAR * ITER_LOOP;
-	srand(time(NULL));
-
 	do {
 		Empty = EmptyLoop();
 		TimeTotalPlus = TestPlus();
@@ -207,15 +205,15 @@ void IntegralType<Type>::Retest(double& plus, double& minus, double& mult, doubl
 		TimeTotalDiv = TestDiv();
 	} while (TimeTotalDiv <= EmptyDiv);
 
-	plus = NUMERATOR / fabs(TimeTotalPlus - Empty);
-	minus = NUMERATOR / fabs(TimeTotalMinus - Empty);
-	mult = NUMERATOR / fabs(TimeTotalMult - EmptyMult);
-	div = NUMERATOR / fabs(TimeTotalDiv - EmptyDiv);
+	_plus = NUMERATOR / fabs(TimeTotalPlus - Empty);
+	_minus = NUMERATOR / fabs(TimeTotalMinus - Empty);
+	_mult = NUMERATOR / fabs(TimeTotalMult - EmptyMult);
+	_div = NUMERATOR / fabs(TimeTotalDiv - EmptyDiv);
 }
 
 
 
 template<typename Type>
-IntegralType<Type>::IntegralType::~IntegralType()
+IntegerType<Type>::IntegerType::~IntegerType()
 {
 }

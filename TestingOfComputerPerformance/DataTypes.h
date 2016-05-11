@@ -1,10 +1,10 @@
 #pragma once
-//#include <iostream>
 #include <string>
 #include <chrono>
 #include <climits>
 
-#define NUMBER_OF_LOOP_STARTS 5
+#define NUMBER_OF_LOOP_STARTS 1
+#define NUMBER_OF_VARIABLES 40
 
 template <typename Type>
 class DataTypes
@@ -33,26 +33,32 @@ protected:
 	//total time spent on the operation within a single test
 	double TimeTotalPlus, TimeTotalMinus, TimeTotalMult, TimeTotalDiv;
 
-	void SelectMaxValue();
-	double SelectAverage(double* arr);
-	virtual void Retest(double& plus, double& minus, double& mult, double& div) = 0;
-	void Show(std::string sign, double OperationPerSec);
 
-	//wide of columns
-	struct columns
-	{
-		const int first = 2;						//sign of operation
-		const int second = 8;						//type name
-		const int third = 13;						//number operation per second
-		const int fourth = 48;						//diagram
-		const int fifth = 4;						//percentage
-	};
+	void Initialization();									//variable initialization
+	double SelectAverage(double* _arr);						//select averange in array
+	void Show(std::string _sign, double _OperationPerSec);	//show result for one operation
+	
+	//tests for base operations
+	virtual double TestPlus() = 0;
+	virtual double TestMinus() = 0;
+	virtual double TestMult() = 0;
+	virtual double TestDiv() = 0;
+
+	//single pass all tests
+	virtual void Retest(double& _plus, double& _minus, double& _mult, double& _div) = 0;
 
 public:
-	void ShowAll();
-	void Test();
-	
+	void Test();									//run test for data type
+	void ShowAll();									//show rezults for all operations
 	DataTypes();
 	~DataTypes();
 };
 
+//wide of columns
+struct columns
+{
+	const int first = 3;						//sign of operation
+	const int second = 8;						//type name
+	const int third = 13;						//number operation per second
+	const int fourth = 50;						//diagram
+};

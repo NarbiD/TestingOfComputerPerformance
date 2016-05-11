@@ -1,19 +1,29 @@
 #include <iostream>
 #include "DataTypes.h"
 #include "DataTypes.cpp"
-#include "IntegralType.h"
+#include "IntegerType.h"
 #include "FloatPointType.h"
-#include "IntegralType.cpp"
+#include "IntegerType.cpp"
 #include "FloatPointType.cpp"
 
 using namespace std;
 
-#pragma optimize("", off)
+void BenchmarkingProcess();
+
 int main()
 {
-	IntegralType<int>* Int = new IntegralType<int>();
-	IntegralType<char>* Char = new IntegralType<char>();
-	IntegralType<long long>* Long = new IntegralType<long long>();
+	BenchmarkingProcess();
+
+	system("pause");
+	return 0;
+}
+
+#pragma optimize("", off)
+void BenchmarkingProcess()
+{	
+	IntegerType<int>* Int = new IntegerType<int>();
+	IntegerType<char>* Char = new IntegerType<char>();
+	IntegerType<long long>* Long = new IntegerType<long long>();
 	FloatPointType<float>* Float = new FloatPointType<float>();
 	FloatPointType<double>* Double = new FloatPointType<double>();
 
@@ -28,8 +38,5 @@ int main()
 	Long->ShowAll();
 	Float->ShowAll();
 	Double->ShowAll();
-
-	system("pause");
-	return 0;
 }
 #pragma optimize("", on)

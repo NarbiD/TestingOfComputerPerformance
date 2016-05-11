@@ -3,10 +3,9 @@
 #include "DataTypes.h"
 
 #define ITER_LOOP 100000
-#define NUMB_OF_INT_VAR 40
 
 template <typename Type>
-class IntegralType :
+class IntegerType :
 	public DataTypes<Type>
 {
 private:
@@ -15,8 +14,9 @@ private:
 	double EmptyMult;
 	double EmptyDiv;
 
+	const double NUMERATOR = NUMBER_OF_VARIABLES * ITER_LOOP;
 public:
-	IntegralType() : DataTypes<Type>() {}
+	IntegerType() : DataTypes<Type>() {}
 	
 	double EmptyLoop();
 	double EmptyLoopMult();
@@ -27,11 +27,7 @@ public:
 	double TestMult();
 	double TestDiv();
 
-	void Retest(double& plus, double& minus, double& mult, double& div);
-
-	//void SelectAverage(double * arr);
-
-	//void Test();
+	void Retest(double& _plus, double& _minus, double& _mult, double& _div);
 	
-	~IntegralType();
+	~IntegerType();
 };

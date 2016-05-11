@@ -8,57 +8,16 @@
 using namespace std;
 
 template<typename Type>
-void DataTypes<Type>::Show(string sign, double OperationPerSec)
+DataTypes<Type>::DataTypes()
 {
-	columns show;			//width of columns
-	stringstream ost;		// stream of string
-	string str = "";
-
-	//print sign
-	str += sign;
-	for (int i = 0; i < (show.first - sign.length()); ++i)
-		str += " ";
-
-	//print type's name
-	str += Name;
-	for (int i = 0; i < (show.second - Name.length()); ++i)
-		str += " ";
-
-	//print number operation per second
-	ost << OperationPerSec;
-	str += ost.str();
-	for (int i = 0; i < (show.third - ost.str().length()); ++i)
-		str += " ";
-
-	//print diagram
-	int N = int(((OperationPerSec / MaxValue)*show.fourth));
-	N = (N < 0 ? 0 : N);
-	N = (N > show.fourth ? show.fourth : (N == 0 ? 1 : N));
-	for (int i = 0; i < N; ++i)
-		str += "X";
-	for (int i = 0; i < (show.fourth - N + 1); ++i)
-		str += " ";
-
-	//print percent computing
-	double percent = (OperationPerSec / MaxValue) * 100;
-	if (percent < 1 && percent >= 0.01)
-		percent = double(int(percent * 100)) / 100; //like 0.02
-	else
-		percent = int(percent); //floor
-	ost.str("");
-	ost << percent;
-	for (int i = 0; i < (show.fifth - ost.str().length()); ++i)
-		str += " ";
-	str += ost.str();
-	str += "%\n";
-
-	cout << str;
+	Initialization();
 }
 
 template<typename Type>
-DataTypes<Type>::DataTypes()
+void DataTypes<Type>::Initialization()
 {
 	Name = typeid(Type).name();
+
 	srand(time(NULL));
 	a1 = (rand() % SCHAR_MAX) + 2; a2 = (rand() % SCHAR_MAX) + 2; a3 = (rand() % SCHAR_MAX) + 2; a4 = (rand() % SCHAR_MAX) + 2; a5 = (rand() % SCHAR_MAX) + 2;
 	b1 = (rand() % SCHAR_MAX) + 2; b2 = (rand() % SCHAR_MAX) + 2; b3 = (rand() % SCHAR_MAX) + 2; b4 = (rand() % SCHAR_MAX) + 2; b5 = (rand() % SCHAR_MAX) + 2;
@@ -71,9 +30,65 @@ DataTypes<Type>::DataTypes()
 }
 
 template<typename Type>
+void DataTypes<Type>::Show(string _sign, double _OperationPerSec)
+{
+	columns _column;
+	stringstream _ost;
+	string _output = "";
+
+	double _percent = (_OperationPerSec / MaxValue) * 100.0;
+	int _length = int(_percent / 2);
+
+	//add sign to output
+	_output += _sign;
+
+	for (int i = 0, end = _column.first - _sign.length(); i < end; ++i)
+		_output += " ";
+
+	//add type's name to output
+	_output += Name;
+	for (int i = 0, end = _column.second - Name.length(); i < end; ++i)
+		_output += " ";
+
+	//add number operation per second to print
+	_ost << _OperationPerSec;
+	_output += _ost.str();
+
+	for (int i = 0, end = _column.third - _ost.str().length(); i < end; ++i)
+		_output += " ";
+
+	//add diagram to print
+	if (_length > _column.fourth) _length = _column.fourth;
+	if (_length < 2) _length = 1;
+
+	for (int i = 0; i < _length; ++i)
+		_output += "X";
+	for (int i = 0, end = _column.fourth - _length + 1; i < end; ++i)
+		_output += " ";
+
+	//print percent computing
+	if (_percent < 1.0 && _percent >= 0.01)
+		_percent = floor(_percent * 100) / 100.0;
+	else
+		_percent = floor(_percent);
+
+	_ost.str("");
+	_ost << _percent;
+	_output += _ost.str() + "%\n";
+
+	cout << _output;
+}
+
+template<typename Type>
 void DataTypes<Type>::ShowAll()
 {
-	SelectMaxValue();
+	//select max value
+	MaxValue = Plus;
+	if (MaxValue < Div) MaxValue = Div;
+	if (MaxValue < Minus) MaxValue = Minus;
+	if (MaxValue < Mult) MaxValue = Mult;
+
+	//print results
 	Show("+", Plus);
 	Show("-", Minus);
 	Show("*", Mult);
@@ -81,14 +96,15 @@ void DataTypes<Type>::ShowAll()
 	cout << endl;
 }
 
-//select max value among time of all operation
 template<typename Type>
-void DataTypes<Type>::SelectMaxValue()
+double DataTypes<Type>::SelectAverage(double *_arr)
 {
-	MaxValue = Plus;
-	if (MaxValue < Div) MaxValue = Div;
-	if (MaxValue < Minus) MaxValue = Minus;
-	if (MaxValue < Mult) MaxValue = Mult;
+	double _sum = 0.0;
+
+	for (int i = 0; i < NUMBER_OF_LOOP_STARTS; ++i)
+		_sum += _arr[i];
+
+	return _sum / (double)NUMBER_OF_LOOP_STARTS;
 }
 
 template<typename Type>
@@ -105,19 +121,6 @@ void DataTypes<Type>::Test()
 }
 
 template<typename Type>
-double DataTypes<Type>::SelectAverage(double *arr)
-{
-	double sum = 0.0;
-
-	for (int i = 0; i < NUMBER_OF_LOOP_STARTS; ++i)
-		sum += arr[i];
-
-	return sum / (double)NUMBER_OF_LOOP_STARTS;
-}
-
-
-template<typename Type>
 DataTypes<Type>::~DataTypes()
 {
 }
-
