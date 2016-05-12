@@ -1,7 +1,7 @@
 #pragma once
 #include "DataTypes.h"
 
-#define DEVIDER 5000
+#define DEVIDER SCHAR_MAX
 #define ITER_LOOP_FLOAT 65000
 #define NUMB_OF_FLOAT_VAR 40
 
@@ -15,6 +15,7 @@ private:
 	double EmptyDiv;
 
 	const double NUMERATOR = NUMBER_OF_VARIABLES * ITER_LOOP_FLOAT;
+
 public:
 	FloatPointType() : DataTypes<Type>() {}
 	
@@ -25,8 +26,11 @@ public:
 	double TestMinus();
 	double TestMult();
 	double TestDiv();
+	double TestIncrement();
 
-	void Retest(double& _plus, double& _minus, double& _mult, double& _div);
+	void SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc);
+
+	double EmptyLoopInc();
 
 	~FloatPointType();
 };

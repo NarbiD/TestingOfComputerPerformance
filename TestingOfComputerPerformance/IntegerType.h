@@ -15,6 +15,7 @@ private:
 	double EmptyDiv;
 
 	const double NUMERATOR = NUMBER_OF_VARIABLES * ITER_LOOP;
+
 public:
 	IntegerType() : DataTypes<Type>() {}
 	
@@ -26,8 +27,10 @@ public:
 	double TestMinus();
 	double TestMult();
 	double TestDiv();
+	double TestIncrement();
 
-	void Retest(double& _plus, double& _minus, double& _mult, double& _div);
+	void SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc);
+
 	
 	~IntegerType();
 };

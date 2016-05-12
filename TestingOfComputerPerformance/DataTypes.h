@@ -3,7 +3,6 @@
 #include <chrono>
 #include <climits>
 
-#define NUMBER_OF_LOOP_STARTS 1
 #define NUMBER_OF_VARIABLES 40
 
 template <typename Type>
@@ -20,23 +19,20 @@ protected:
 	//values of time
 	std::chrono::high_resolution_clock::time_point StartTime, FinishTime;
 
-	//arrays with results of test operations
-	//every element of array is time of one test for one operation
-	double setPlus[NUMBER_OF_LOOP_STARTS];
-	double setMinus[NUMBER_OF_LOOP_STARTS];
-	double setMult[NUMBER_OF_LOOP_STARTS];
-	double setDiv[NUMBER_OF_LOOP_STARTS];
-
 	//averages of all tests with operation
-	double Plus, Minus, Mult, Div, MaxValue;
+	double Plus, Minus, Mult, Div, Increment,MaxValue;
 
 	//total time spent on the operation within a single test
-	double TimeTotalPlus, TimeTotalMinus, TimeTotalMult, TimeTotalDiv;
+	double TimeTotalPlus, TimeTotalMinus, TimeTotalMult, TimeTotalDiv, TimeTotalIncrement;
 
+	//variable initialization
+	void Initialization();	
 
-	void Initialization();									//variable initialization
-	double SelectAverage(double* _arr);						//select averange in array
-	void Show(std::string _sign, double _OperationPerSec);	//show result for one operation
+	//select averange in array
+	double SelectAverage(double* _arr, int _n);			
+
+	//show result for one operation
+	void Show(std::string _sign, double _OperationPerSec);	
 	
 	//tests for base operations
 	virtual double TestPlus() = 0;
@@ -44,12 +40,15 @@ protected:
 	virtual double TestMult() = 0;
 	virtual double TestDiv() = 0;
 
-	//single pass all tests
-	virtual void Retest(double& _plus, double& _minus, double& _mult, double& _div) = 0;
+	virtual void SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc) = 0;
 
 public:
-	void Test();									//run test for data type
-	void ShowAll();									//show rezults for all operations
+	//run test for all operations
+	void Test(int precision);
+
+	//show rezults for all operations
+	void ShowAll();						
+
 	DataTypes();
 	~DataTypes();
 };

@@ -93,30 +93,40 @@ void DataTypes<Type>::ShowAll()
 	Show("-", Minus);
 	Show("*", Mult);
 	Show("/", Div);
+	Show("++", Increment);
 	cout << endl;
 }
 
 template<typename Type>
-double DataTypes<Type>::SelectAverage(double *_arr)
+double DataTypes<Type>::SelectAverage(double *_arr, int _n)
 {
 	double _sum = 0.0;
 
-	for (int i = 0; i < NUMBER_OF_LOOP_STARTS; ++i)
+	for (int i = 0; i < _n; ++i)
 		_sum += _arr[i];
 
-	return _sum / (double)NUMBER_OF_LOOP_STARTS;
+	return _sum / (double)_n;
 }
 
 template<typename Type>
-void DataTypes<Type>::Test()
+void DataTypes<Type>::Test(int precision)
 {
-	for (int i = 0; i < NUMBER_OF_LOOP_STARTS; ++i)
+	//array with results of test operations
+	//every element in array is time of one test for one operation
+	double* setPlus = new double[precision];
+	double* setMinus = new double[precision];
+	double* setMult = new double[precision];
+	double* setDiv = new double[precision];
+	double* setInc = new double[precision];
+
+	for (int i = 0; i < precision; ++i)
 	{
-		Retest(setPlus[i], setMinus[i], setMult[i], setDiv[i]);
-		Plus = SelectAverage(setPlus);
-		Minus = SelectAverage(setMinus);
-		Mult = SelectAverage(setMult);
-		Div = SelectAverage(setDiv);
+		SingleTest(setPlus[i], setMinus[i], setMult[i], setDiv[i], setInc[i]);
+		Plus = SelectAverage(setPlus, precision);
+		Minus = SelectAverage(setMinus, precision);
+		Mult = SelectAverage(setMult, precision);
+		Div = SelectAverage(setDiv, precision);
+		Increment = SelectAverage(setInc, precision);
 	}
 }
 

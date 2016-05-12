@@ -187,13 +187,36 @@ double IntegerType<Type>::TestDiv()
 }
 
 template<typename Type>
-void IntegerType<Type>::Retest(double& _plus, double& _minus, double& _mult, double& _div)
+double IntegerType<Type>::TestIncrement()
+{
+	StartTime = high_resolution_clock::now();
+
+	for (int i = 0; i < ITER_LOOP; ++i)
+	{
+		a1++;	a2++;	a3++;	a4++;	a5++;
+		b1++;	b2++;	b3++;	b4++;	b5++;
+		c1++;	c2++;	c3++;	c4++;	c5++;
+		d1++;	d2++;	d3++;	d4++;	d5++;
+		e1++;	e2++;	e3++;	e4++;	e5++;
+		f1++;	f2++;	f3++;	f4++;	f5++;
+		g1++;	g2++;	g3++;	g4++;	g5++;
+		h1++;	h2++;	h3++;	h4++;	h5++;
+	}
+
+	FinishTime = high_resolution_clock::now();
+	duration<double> result = duration_cast<duration<double>>(FinishTime - StartTime);
+	return result.count();
+}
+
+template<typename Type>
+void IntegerType<Type>::SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc)
 {
 	do {
 		Empty = EmptyLoop();
 		TimeTotalPlus = TestPlus();
 		TimeTotalMinus = TestMinus();
-	} while (TimeTotalPlus <= Empty || TimeTotalMinus <= Empty);
+		TimeTotalIncrement = TestIncrement();
+	} while (TimeTotalPlus <= Empty || TimeTotalMinus <= Empty || TimeTotalIncrement <= Empty);
 
 	do {
 		EmptyMult = EmptyLoopMult();
@@ -209,8 +232,8 @@ void IntegerType<Type>::Retest(double& _plus, double& _minus, double& _mult, dou
 	_minus = NUMERATOR / fabs(TimeTotalMinus - Empty);
 	_mult = NUMERATOR / fabs(TimeTotalMult - EmptyMult);
 	_div = NUMERATOR / fabs(TimeTotalDiv - EmptyDiv);
+	_inc = NUMERATOR / fabs(TimeTotalIncrement - Empty);
 }
-
 
 
 template<typename Type>
