@@ -1,3 +1,9 @@
+//
+// Created by NarbiD on 21.02.16.
+// Copyright (c) 2016 Denis Ignashov. All rights reserved.
+//
+
+
 #include "IntegerType.h"
 
 using namespace std::chrono;
