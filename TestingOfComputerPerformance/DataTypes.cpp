@@ -23,11 +23,13 @@ void DataTypes<Type>::Initialization()
 	b1 = (rand() % SCHAR_MAX) + 2; b2 = (rand() % SCHAR_MAX) + 2; b3 = (rand() % SCHAR_MAX) + 2; b4 = (rand() % SCHAR_MAX) + 2; b5 = (rand() % SCHAR_MAX) + 2;
 	c1 = (rand() % SCHAR_MAX) + 2; c2 = (rand() % SCHAR_MAX) + 2; c3 = (rand() % SCHAR_MAX) + 2; c4 = (rand() % SCHAR_MAX) + 2; c5 = (rand() % SCHAR_MAX) + 2;
 	d1 = (rand() % SCHAR_MAX) + 2; d2 = (rand() % SCHAR_MAX) + 2; d3 = (rand() % SCHAR_MAX) + 2; d4 = (rand() % SCHAR_MAX) + 2; d5 = (rand() % SCHAR_MAX) + 2;
-	e1 = (rand() % SCHAR_MAX) + 2; e2 = (rand() % SCHAR_MAX) + 2; e3 = (rand() % SCHAR_MAX) + 2; e4 = (rand() % SCHAR_MAX) + 2; e5 = (rand() % SCHAR_MAX) + 2;
-	f1 = (rand() % SCHAR_MAX) + 2; f2 = (rand() % SCHAR_MAX) + 2; f3 = (rand() % SCHAR_MAX) + 2; f4 = (rand() % SCHAR_MAX) + 2; f5 = (rand() % SCHAR_MAX) + 2;
-	g1 = (rand() % SCHAR_MAX) + 2; g2 = (rand() % SCHAR_MAX) + 2; g3 = (rand() % SCHAR_MAX) + 2; g4 = (rand() % SCHAR_MAX) + 2; g5 = (rand() % SCHAR_MAX) + 2;
-	h1 = (rand() % SCHAR_MAX) + 2; h2 = (rand() % SCHAR_MAX) + 2; h3 = (rand() % SCHAR_MAX) + 2; h4 = (rand() % SCHAR_MAX) + 2; h5 = (rand() % SCHAR_MAX) + 2;
+	a6 = (rand() % SCHAR_MAX) + 2; a7 = (rand() % SCHAR_MAX) + 2; a8 = (rand() % SCHAR_MAX) + 2; a9 = (rand() % SCHAR_MAX) + 2; a0 = (rand() % SCHAR_MAX) + 2;
+	b6 = (rand() % SCHAR_MAX) + 2; b7 = (rand() % SCHAR_MAX) + 2; b8 = (rand() % SCHAR_MAX) + 2; b9 = (rand() % SCHAR_MAX) + 2; b0 = (rand() % SCHAR_MAX) + 2;
+	c6 = (rand() % SCHAR_MAX) + 2; c7 = (rand() % SCHAR_MAX) + 2; c8 = (rand() % SCHAR_MAX) + 2; c9 = (rand() % SCHAR_MAX) + 2; c0 = (rand() % SCHAR_MAX) + 2;
+	d6 = (rand() % SCHAR_MAX) + 2; d7 = (rand() % SCHAR_MAX) + 2; d8 = (rand() % SCHAR_MAX) + 2; d9 = (rand() % SCHAR_MAX) + 2; d0 = (rand() % SCHAR_MAX) + 2;
 }
+
+
 
 template<typename Type>
 void DataTypes<Type>::Show(string _sign, double _OperationPerSec)
@@ -93,7 +95,9 @@ void DataTypes<Type>::ShowAll()
 	Show("-", Minus);
 	Show("*", Mult);
 	Show("/", Div);
+	cout << endl;
 	Show("++", Increment);
+	Show("--", Decrement);
 	cout << endl;
 }
 
@@ -118,16 +122,25 @@ void DataTypes<Type>::Test(int precision)
 	double* setMult = new double[precision];
 	double* setDiv = new double[precision];
 	double* setInc = new double[precision];
+	double* setDec = new double[precision];
 
 	for (int i = 0; i < precision; ++i)
 	{
-		SingleTest(setPlus[i], setMinus[i], setMult[i], setDiv[i], setInc[i]);
+		SingleTest(setPlus[i], setMinus[i], setMult[i], setDiv[i], setInc[i], setDec[i]);
 		Plus = SelectAverage(setPlus, precision);
 		Minus = SelectAverage(setMinus, precision);
 		Mult = SelectAverage(setMult, precision);
 		Div = SelectAverage(setDiv, precision);
 		Increment = SelectAverage(setInc, precision);
+		Decrement = SelectAverage(setInc, precision);
 	}
+
+	delete[] setPlus;
+	delete[] setMinus;
+	delete[] setMult;
+	delete[] setDiv;
+	delete[] setInc;
+	delete[] setDec;
 }
 
 template<typename Type>

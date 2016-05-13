@@ -13,6 +13,7 @@ private:
 
 	double Empty;
 	double EmptyDiv;
+	double EmptyIncDec;
 
 	const double NUMERATOR = NUMBER_OF_VARIABLES * ITER_LOOP_FLOAT;
 
@@ -27,10 +28,11 @@ public:
 	double TestMult();
 	double TestDiv();
 	double TestIncrement();
+	double TestDecrement();
 
-	void SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc);
+	void SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc, double& _dec);
 
-	double EmptyLoopInc();
+	double EmptyLoopIncDec();
 
 	~FloatPointType();
 };

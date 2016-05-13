@@ -13,6 +13,7 @@ private:
 	double Empty;
 	double EmptyMult;
 	double EmptyDiv;
+	double EmptyIncDec;
 
 	const double NUMERATOR = NUMBER_OF_VARIABLES * ITER_LOOP;
 
@@ -22,14 +23,16 @@ public:
 	double EmptyLoop();
 	double EmptyLoopMult();
 	double EmptyLoopDiv();
+	double EmptyLoopIncDec();
 
 	double TestPlus();
 	double TestMinus();
 	double TestMult();
 	double TestDiv();
 	double TestIncrement();
+	double TestDecrement();
 
-	void SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc);
+	void SingleTest(double& _plus, double& _minus, double& _mult, double& _div, double& _inc, double& _dec);
 
 	
 	~IntegerType();
